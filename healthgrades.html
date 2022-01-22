@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Grades Page</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://kit.fontawesome.com/31eef33995.js" crossorigin="anonymous"></script>
+
+    <style>
+        #footer {
+            background-color:lightgray;
+            padding-bottom:10px;
+        }
+
+        #footer h3 {
+            margin-left:20px;
+            padding-top:10px;
+        }
+        
+        ul {
+            list-style-type:none;
+            margin:0px;
+        }
+        
+        #title {
+            text-align: center;
+            margin-top: 75px;
+        }
+        
+        #top {
+            height:60px;
+            background-color:lightgray;
+        }
+        
+        #subject {
+            text-align: center;
+            align-content: center;
+        }
+        
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(460px, 2fr));
+            grid-gap: 12px;
+            padding: 10px;
+            width: 90%;
+            margin: auto;
+        }
+        
+        .grid-container > div {
+            border: 1px solid black;
+            text-align: center;
+            font-size: 30px;
+        }
+        
+        .iconsub {
+            padding-top: 20px;
+        }
+        
+        .mainsub {
+            padding-top: 10px;
+        }
+        
+        #subj{
+            text-align: center;
+            align-content: center;
+            width: 100%;
+            border-top: 1px solid black;
+            padding-bottom: 0px;
+        }
+        
+        .grades{
+            text-align: center;
+            align-content: center;
+            margin: auto;
+            width: 100%;
+            border-top: 1px solid black;
+        }
+        
+        .gradestitle {
+            text-align: left;
+            padding: 10px;
+        }
+        
+        .label {
+            text-align: left;
+            padding-left: 30px;
+        }
+        
+        .score {
+            padding-right: 10px;
+        }
+        
+        #raw {
+            text-align: left;
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 10px;
+            padding-bottom: 0px;
+        }
+        
+        #final {
+            text-align: left;
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 0px;
+            padding-bottom: 5px;
+        }
+        
+        .summary{
+            width: 100%;
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;
+        }
+        
+        .s {
+            text-align: left;
+            padding-left: 30px;
+            border-bottom: 1px solid black;
+            border-bottom: 1px solid black;
+        }
+        
+        .s1 {
+            padding-left: 10px;
+        }
+        
+        .grade {
+            text-align: right;
+            padding-right: 15px;
+        }
+        
+        #subjtitle {
+            border: 1px solid black;
+            padding: 10px;
+            align-content: center;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            width: 65%;
+        }
+        
+    </style>
+        </head>
+   
+<div id="body">
+    <div id="header">
+        <div class="fixed-top" id="top">
+            <img id="logo" alt="PSHS logo" class="mx-auto d-block" src="pshs-logo.png">
+        </div>
+    </div>
+    
+    <div id="title">
+        <h1>COMPETENCIES</h1>
+    </div>
+    
+    <div>
+    <table id="subjtitle">
+        <tr>
+            <th id="subject">HEALTH</th>
+        </tr>
+    </table>
+    </div>
+    
+    <div class="grid-container">
+        <div>
+            <p class="mainsub">SUBJECTS</p>
+            <table id="subj">
+                <tr>
+                    <td class="iconsub"><a href="https://icieie.github.io/csproj/index">
+                        <i class="fas fa-thin fa-dna"></i></a>
+                        <p>BIOLOGY</p></td>
+                    <td class="iconsub"><a href="https://icieie.github.io/csproj/chemgrades">
+                        <i class="fas fa-thin fa-vial"></i></a>
+                        <p>CHEMISTRY</p></td>
+                    <td class="iconsub"><a href="https://icieie.github.io/csproj/comscigrades">
+                        <i class="fas fa-solid fa-desktop"></i></a>
+                        <p>COMPSCI</p></td>
+                </tr>
+                <tr>
+                    <td><a href="https://icieie.github.io/csproj/englishgrades">
+                        <i class="fas fa-solid fa-book-open"></i></a>
+                        <p>ENGLISH</p></td>
+                    <td><a href="https://icieie.github.io/csproj/filipinogrades">
+                        <i class="fas fa-thin fa-book"></i></a>
+                        <p>FILIPINO</p></td>
+                    <td><a href="https://icieie.github.io/csproj/healthgrades">
+                        <i class="fas fa-thin fa-heart"></i></a>
+                        <p>HEALTH</p></td>
+                </tr>
+                <tr>
+                    <td><a href="https://icieie.github.io/csproj/mathgrades">
+                        <i class="fas fa-thin fa-calculator"></i></a>
+                        <p>MATH</p></td>
+                    <td><a href="https://icieie.github.io/csproj/musicgrades">
+                        <i class="fas fa-thin fa-music"></i></a>
+                        <p>MUSIC</p></td>
+                    <td><a href="https://icieie.github.io/csproj/pegrades">
+                        <i class="fas fa-thin fa-dumbbell"></i></a>
+                        <p>PE</p></td>
+                </tr>
+                <tr>
+                    <td><a href="https://icieie.github.io/csproj/physicsgrades">
+                        <i class="fas fa-thin fa-atom"></i></a>
+                        <p>PHYSICS</p></td>
+                    <td><a href="https://icieie.github.io/csproj/socscigrades">
+                        <i class="fas fa-thin fa-landmark"></i></a>
+                        <p>SOCSCI</p></td>
+                    <td><a href="https://icieie.github.io/csproj/statgrades">
+                        <i class="fas fa-thin fa-signal"></i></a>
+                        <p>STATS</p></td>
+                </tr>
+                <tr>
+                    <td> </td>
+                    <td><a href="https://icieie.github.io/csproj/valed">
+                        <i class="fas fa-thin fa-hand-holding-heart"></i></a>
+                        <p>VALED</p></td>
+                    <td> </td>
+                </tr>
+            </table>
+        </div>
+        
+        <div>
+            <p class="mainsub">GRADES</p>
+            <table class="grades">
+                <tr>
+                    <td colspan="2" class="gradestitle">FORMATIVE - 25%</td>
+                </tr>
+                <tr>
+                    <td class="label">FA 1:</td>
+                    <td class="score">15/15</td>
+                </tr>
+                <tr>
+                    <td class="label">FA 2:</td>
+                    <td class="score">15/15</td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="gradestitle">ALTERNATIVE - 75%</td>
+                </tr>
+                <tr>
+                    <td class="label">AA 1:</td>
+                    <td class="score">15/15</td>
+                </tr>
+                <tr>
+                    <td id="raw">RAW GRADE:</td>
+                    <td class="score">100</td>
+                </tr>
+                <tr>
+                    <td id="final">FINAL GRADE: </td>
+                    <th class="score">1.00</th>
+                </tr>
+            </table>
+        </div>
+        
+        <div>
+            <p class="mainsub">SUMMARY</p>
+            <table class="summary">
+                <tr class="s">
+                    <td class="s1">Biology</td>
+                    <td class="grade">1.00</td>
+                </tr>
+                <tr class="s">
+                    <td class="s1">Chemistry</td>
+                    <td class="grade">1.00</td>
+                </tr>
+                <tr class="s">
+                    <td class="s1">Computer Science</td>
+                    <td class="grade">1.00</td>
+                </tr>
+                <tr class="s">
+                    <td class="s1">English</td>
+                    <td class="grade">1.00</td>
+                </tr>
+                <tr class="s">
+                    <td class="s1">Filipino</td>
+                    <td class="grade">1.00</td>
+                </tr>
+                <tr class="s">
+                    <td class="s1">Health</td>
+                    <td class="grade">1.00</td>
+                </tr>
+                <tr class="s">
+                    <td class="s1">Math</td>
+                    <td class="grade">1.00</td>
+                </tr>
+                <tr class="s">
+                    <td class="s1">Music</td>
+                    <td class="grade">1.00</td>
+                </tr>
+                <tr class="s">
+                    <td class="s1">Physical Education</td>
+                    <td class="grade">1.00</td>
+                </tr>
+                <tr class="s">
+                    <td class="s1">Physics</td>
+                    <td class="grade">1.00</td>
+                </tr>
+                <tr class="s">
+                    <td class="s1">Social Science</td>
+                    <td class="grade">1.00</td>
+                </tr>
+                <tr class="s">
+                    <td class="s1">Statistics</td>
+                    <td class="grade">1.00</td>
+                </tr>
+                <tr class="s">
+                    <th class="s1">GWA</th>
+                    <th class="grade">1.00</th>
+                </tr>
+            </table>
+        </div> 
+        
+    </div>
+    
+    <div id="footer" class="container-fluid">
+        <h3>
+            Stay in touch
+        </h3>
+        <ul>
+            <li>
+                <i class="fas fa-globe"></i>
+                <a href="https://clc.pshs.edu.ph" target="_blank">https://clc.pshs.edu.ph</a>
+            </li>
+            <li>
+                <i class="fas fa-phone-alt"></i>
+                <a href="tel:Tel.No:(045)4990136" target="_blank">Tel. No :  (045) 499 0136</a>
+            </li>
+            <li>
+                <i class="fas fa-envelope"></i>
+                <a href="mailto:khub@clc.pshs.edu.ph" target="_blank">khub@clc.pshs.edu.ph</a>
+            </li>
+    </ul>
+    </div>
+    </div>
+</html>
