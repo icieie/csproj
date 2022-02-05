@@ -25,7 +25,6 @@
             background-color:lightgray;
             padding-bottom:10px;
             margin-bottom: 0px;
-            width: 100%;
         }
 
         #footer h3 {
@@ -446,14 +445,14 @@
         height: 100%;
         top: 0;
         left: 260px;
-        width: calc(100%-78px);
+        width: calc(100% - 78px);
         transition: all 0.5s ease;
         margin-left: 78px;
       }
 
       .sidebar.inactive ~ .main{
         left: 78px;
-        width: calc(100%-78px);
+        width: calc(100% - 78px);
       }
 
       .main #top{
@@ -478,14 +477,75 @@
         max-height: 100%;
         padding: 8px;
       }
+        @media (max-width: 360px) {
+            #body{
+                width: 100%;
+                font-size: 10px;
+            }
+            #title{
+                font-size: 20px;
+            }
+            #a {
+                width: 64%;
+                margin-left: 70px;
+                padding: 2px;
+                height: 400px;
+            }
+            .mainsub {
+                font-size: 20px;
+                padding-bottom: 0px;
+                margin-bottom: 0px;
+            }
+            #subj {
+                font-size: 15px;
+                padding-top: 10px;
+            }
+            .iconsub {
+                padding: 8px;
+                margin: 0px;
+            }
+            #b {
+                width: 64%;
+                margin-left: 70px;
+                padding: 2px;
+                height: 380px;
+            }
+            #grade {
+                font-size: 20px;
+            }
+            .grades {
+                font-size: 15px;
+                margin: 0px;
+            }
+            #c {
+                width: 64%;
+                margin-left: 70px;
+                padding: 2px;
+                height: 400px;
+            }
+            .summary {
+                font-size: 15px;
+                margin-bottom: 10px;
+                width: 100%;
+                padding-left: 2px;
+            }
+            .s1 {
+                margin-left: 0px;
+                padding-left: 0px;
+            }
+            .s {
+                margin-left: 0px;
+                padding-left: 0px;
+            }
+        }
     </style>
 </head>
    
 <div id="body">
     <div class="sidebar inactive">
       <div class="logo-details">
-        <i class="fas fa-tachometer-alt icon"></i>
-        <div class="logo-name">DASHBOARD</div>
+        <i class="fas fa-book-open icon"></i>
+        <div class="logo-name">GRADEBOOK</div>
         <i class="fas fa-bars" id="btn"></i>
       </div>
 
@@ -574,7 +634,7 @@
     </div>
     
     <div id="title">
-        <h1>COMPETENCIES</h1>
+        <h2>COMPETENCIES</h2>
     </div>
     
     <div>
@@ -586,7 +646,7 @@
     </div>
     
     <div class="grid-container">
-        <div>
+        <div id="a">
             <p class="mainsub">SUBJECTS</p>
             <table id="subj">
                 <tr>
@@ -643,8 +703,7 @@
             </table>
         </div>
         
-        <div>
-            
+        <div id="b">
             <p class="mainsub">GRADES</p>
             <table class="grades">
                 <tr>
@@ -692,8 +751,8 @@
         </div>
         </div>
         
-        <div class="grid-container" id="c">
-        <div>
+        <div class="grid-container">
+        <div id="c">
             <p class="mainsub">SUMMARY</p>
             <table class="summary">
                 <tr class="s">
@@ -752,7 +811,7 @@
                     <td class="grade">1.00</td>
                 </tr>
                 <tr class="s">
-                    <td class="s1">Socsci</td>
+                    <td class="s1">Social Science</td>
                     <td class="grade">1.00</td>
                     <td class="grade">1.00</td>
                 </tr>
