@@ -10,9 +10,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/aa5d6ed42b.js" crossorigin="anonymous"></script>
 
-    <style>
+<style>
         html, body {
             height:100%;
+            background-color: #fafafa;
+            color: #253761;
         }
 
         body {
@@ -22,7 +24,8 @@
 
         #top {
             height:60px;
-            background-color:lightgray;
+            background-color:#d9e5fa;
+            box-shadow: 0 20px 15px -15px #edf0fd;
         }
 
         #logo {
@@ -32,6 +35,9 @@
 
         #content {
             flex-grow:1;
+            background-image: url(pisay1.jpg);
+            background-repeat:no-repeat;
+            background-size:cover;
         }
 
         #main {
@@ -41,12 +47,12 @@
         #khub {
             margin-top:180px;
             margin-left:20px;
-            background: white;
-            border-radius: 12px; 
+            background:white;
+            border-radius: 12px;
             padding: 10px;
-            opacity: 0.9;
+            opacity: 0.9
         }
-        
+
         @media screen and (max-width:1341px) {
             #khub {
                 margin-top:130px;
@@ -57,48 +63,26 @@
             #khub {
                 margin-top:60px;
             }
+
+            #content {
+                background-image:url(pisay.jpg);
+            }
         }
 
-        @media screen and (max-width:360px) {
+        @media screen and (max-width:370px) {
             #khub {
                 margin-left:10px;
             }
-            
-            .display-4 {
-                font-size: 50px;
-            }
-            
-            .video-container{
-                height: 9vh;
-            }
 
-            iframe {
-                position: absolute;
-                top: 38%;
-                left: 50%;
-                width: 100%;
-                height: 100%;
-                transform: translate(-50%, -50%);
-                z-index: 0;
-            }
-
-            @media (min-aspect-ratio: 16/9) {
-                .video-container iframe {
-                    height: 100%;
-              }
-            }
-
-            @media (max-aspect-ratio: 16/9) {
-                .video-container iframe {
-                    width: 110%;
-              }
+            #content {
+                background-image:url(pisay2.jpg);
             }
         }
-        
+
         #khub h4 {
             margin:0px;
         }
-        
+
         #log-in {
             background-color:lightgray;
             margin-top:40px;
@@ -106,11 +90,7 @@
             margin-bottom:20px;
             border-radius:15px;
             margin-left:10px;
-            opacity: 0.96;
-        }
-        
-        #login {
-            opacity: 1;
+            opacity:0.9;
         }
 
         #profile {
@@ -131,57 +111,35 @@
             border-radius:15px;
             opacity: 0.9;
         }
-        
+
         #contact {
             list-style-type:none;
             margin:0px;
         }
 
         #footer {
-            background-color:lightgray;
+            background-color: #364fa6;
             padding-bottom:10px;
-            z-index: 100;
         }
 
         #footer h3 {
             margin-left:20px;
             padding-top:10px;
-        }
-        
-        .video-container{
-            height: 9vh;
+            color: #fafafa;
         }
 
-        iframe {
-            position: absolute;
-            top: 38%;
-            left: 50%;
-            width: 100vw;
-            height: 100vh;
-            transform: translate(-50%, -50%);
-            z-index: 0;
-        }
-        
-        @media (min-aspect-ratio: 16/9) {
-            .video-container iframe {
-                /* height = 100 * (9 / 16) = 56.25 */
-                height: 100%;
-          }
+        #footer a {
+          color: #fafafa;
         }
 
-        @media (max-aspect-ratio: 16/9) {
-            .video-container iframe {
-                /* width = 100 / (9 / 16) = 177.777777 */
-                width: 100%;
-          }
+        i {
+          color: #fafafa;
         }
+
     </style>
+    
 </head>
 <body>
-    <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/HQeUaSvs9f8?autoplay=1&mute=1&loop=1&controls=0"></iframe>
-    </div>
-    
     <div class="fixed-top" id="top">
         <img id="logo" alt="PSHS logo" class="mx-auto d-block" src="pshs-logo.png">
     </div>
@@ -210,7 +168,7 @@
                             </h3>
                         </div>
                         <img class="card-img-top rounded-circle mx-auto d-block" id="profile" alt="Mirabel Madrigal" src="user-image.jpg">
-                        <a href="https://icieie.github.io/csproj/homepage%20(logged%20in).html" class="btn btn-block btn-lg btn-secondary" id="login">Log in using Google</a>
+                        <a href="homepage.html" class="btn btn-block btn-lg btn-secondary">Log in using Google</a>
                     </div>
                 </div>
             </div>
