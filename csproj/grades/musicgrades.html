@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Grades Page</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://kit.fontawesome.com/31eef33995.js" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/807c993b6a.js" crossorigin="anonymous"></script>
+
+    <style>
+        html,body
+        {
+            width: 100%;
+            height: 100%;
+            margin: 0px;
+            padding: 0px;
+            overflow-x: hidden;
+            background-color: #fafafa;
+            color: #253761;
+        }
+
+        #footer {
+            background-color:#364fa6;
+            padding-bottom:10px;
+            margin-bottom: 0px;
+            color: #fff;
+        }
+
+        #footer a{
+          color: #fff;
+        }
+
+        #footer h3 {
+            margin-left:20px;
+            padding-top:10px;
+            margin-bottom: 0px;
+        }
+
+        ul {
+            list-style-type:none;
+            margin:0px;
+        }
+
+        #title {
+            text-align: center;
+            margin-top: 75px;
+        }
+
+        #top {
+            height:60px;
+            background-color: #d9e5fa;
+            box-shadow: 0 20px 15px -15px #edf0fd;
+        }
+
+        #fixed-top {
+          background-color: #d9e5fa;
+        }
+
+        #logo {
+            max-height:100%;
+            padding:8px;
+        }
+
+        #subject {
+            text-align: center;
+            align-content: center;
+        }
+
+        #c {
+            display: grid;
+            grid-gap: 12px;
+            padding: 10px;
+            width: 98%;
+            margin-left: 10px;
+            margin-right: 0px;
+            align-self: center;
+            justify-content: center;
+            margin: auto;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(430px, 3fr));
+            grid-template-rows: repeat(auto-fit, minmax(450px, 3fr));
+            grid-gap: 12px;
+            padding: 10px;
+            width: 98%;
+            margin-left: 10px;
+            margin-right: 0px;
+            align-self: center;
+            justify-content: center;
+        }
+
+        .grid-container > div {
+            border: 1px solid #253761;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 30px;
+        }
+
+        .iconsub {
+            padding-top: 20px;
+        }
+
+        .mainsub {
+            padding-top: 10px;
+        }
+
+        #subj{
+            text-align: center;
+            align-content: center;
+            width: 100%;
+            border-top: 1px solid black;
+            padding-bottom: 0px;
+        }
+
+        .grades{
+            text-align: center;
+            align-content: center;
+            margin: auto;
+            width: 100%;
+            border-top: 1px solid black;
+        }
+
+        .gradestitle {
+            text-align: left;
+            padding: 10px;
+        }
+
+        .label {
+            text-align: left;
+            padding-left: 30px;
+        }
+
+        .score {
+            padding-right: 10px;
+        }
+
+        #raw {
+            text-align: left;
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 10px;
+            padding-bottom: 0px;
+        }
+
+        #final {
+            text-align: left;
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 0px;
+            padding-bottom: 5px;
+        }
+
+        .summary{
+            width: 100%;
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;
+        }
+
+        .s {
+            text-align: left;
+            padding-left: 30px;
+            border-bottom: 1px solid black;
+            border-bottom: 1px solid black;
+        }
+
+        .s1 {
+            padding-left: 60px;
+        }
+
+        .grade {
+            text-align: center;
+            padding-right: 15px;
+        }
+
+        #subjtitle {
+            border: 1px solid black;
+            padding: 10px;
+            align-content: center;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            width: 65%;
+        }
+        *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box
+      }
+
+      .sidebar{
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 260px;
+        background: #6d8fed;
+        z-index: 100;
+        transition: all 0.5s ease;
+      }
+
+      .sidebar.inactive{
+        width: 78px;
+      }
+
+      .sidebar .logo-details{
+        height: 60px;
+        display: flex;
+        align-items: center;
+        position: relative;
+      }
+
+      .sidebar .logo-details .icon{
+        padding-left: 20px;
+      }
+
+      .sidebar.inactive .logo-details .icon{
+        opacity: 0;
+        transition: all 0.3s ease;
+      }
+
+      .sidebar .logo-details .logo-name{
+        font-size: 22px;
+        font-weight: 600;
+        color: white;
+        padding-left: 15px;
+        transition: 0.3s ease;
+        transition-delay: 0.1s;
+      }
+
+      .sidebar.inactive .logo-details .logo-name{
+        transition-delay: 0s;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .sidebar .logo-details #btn{
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        transform: translateY(-50%);
+        font-size: 22px;
+        text-align: center;
+      }
+
+      .sidebar i{
+        color: #fff;
+        height: 60px;
+        min-width: 50px;
+        font-size: 25px;
+        text-align: center;
+        line-height: 60px;
+      }
+
+      .sidebar .navbar{
+        display: block;
+        height: 100%;
+        padding: 30px 0 150px 0;
+        overflow: auto;
+      }
+
+      .sidebar.inactive .navbar{
+        overflow: visible;
+      }
+
+      .sidebar .navbar::-webkit-scrollbar{
+        display: none;
+      }
+
+      .sidebar .navbar li{
+        position: relative;
+        list-style: none;
+      }
+
+      .sidebar .navbar li:hover{
+        background: #364fa6;
+        list-style: none;
+        transition: all 0.4s ease;
+      }
+
+      .sidebar .navbar li .drop-down{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #364fa6;
+      }
+
+      .sidebar.inactive .navbar li .drop-down{
+        display: block;
+      }
+
+      .sidebar .navbar li i{
+        height: 50px;
+        min-width: 78px;
+        text-align: center;
+        line-height: 50px;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .sidebar .navbar li.showMenu i.arrow{
+        transform: rotate(-180deg);
+      }
+
+      .sidebar.inactive .navbar i.arrow{
+        display: none;
+      }
+
+      .sidebar .navbar li a{
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+      }
+
+      .sidebar .navbar li a .link-name{
+        font-size: 18px;
+        font-weight: 400;
+        color: white;
+      }
+
+      .sidebar.inactive .navbar li a .link-name{
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .sidebar .navbar li .sub-menu{
+        padding: 6px 6px 14px 80px;
+        margin-top: -10px;
+        background: #364fa6;
+        display: none;
+      }
+
+      .sidebar .navbar li.showMenu .sub-menu{
+        display: block;
+      }
+
+      .sidebar .navbar li .sub-menu a{
+        color: white;
+        font-size: 15px;
+        padding: 5px 0;
+        white-space: nowrap;
+        opacity: 0.6;
+        transition: all 0.3s ease;
+      }
+
+      .sidebar .navbar li .sub-menu a:hover{
+        opacity: 1;
+      }
+
+      .sidebar.inactive .navbar li .sub-menu{
+        position: absolute;
+        left: 100%;
+        top: -10px;
+        margin-top: 0;
+        padding: 10px 20px;
+        border-radius: 0 6px 6px 0;
+        opacity: 0;
+        display: block;
+        pointer-events: none;
+        transition: 0s;
+      }
+
+      .sidebar.inactive .navbar li:hover .sub-menu{
+        top: 0;
+        opacity: 1;
+        pointer-events: auto;
+        transition: all 0.4s ease;
+      }
+
+      .sidebar .navbar li .sub-menu .link-name{
+        display: none;
+      }
+
+      .sidebar.inactive .navbar li .sub-menu .link-name{
+        display: none;
+      }
+
+      .sidebar.inactive .navbar li .sub-menu .link-name{
+        font-size: 18px;
+        opacity: 1;
+        display: block;
+      }
+
+      .sidebar .navbar li .sub-menu.blank{
+        opacity: 1;
+        pointer-events: auto;
+        padding: 3px 20px 6px 16px;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .sidebar .navbar li:hover .sub-menu.blank{
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .sidebar .author-details{
+        position: fixed;
+        bottom: 0;
+        width: 260px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: rgb(130, 136, 185);
+        padding: 12px 0;
+        transition: all 0.5s ease;
+      }
+
+      .sidebar.inactive .author-details{
+        background: none;
+        width: 78px;
+      }
+
+      .sidebar .author-details .author-content{
+        display: flex;
+        align-items: center;
+      }
+
+      .sidebar .author-details img{
+        height: 52px;
+        width: 52px;
+        object-fit: cover;
+        border-radius: 16px;
+        margin: 0 14px 0 12px;
+        background: rgb(130, 136, 185);
+        transition: all 0.5s ease;
+      }
+
+      .sidebar.inactive .author-details img{
+        padding: 10px;
+      }
+
+      .sidebar .author-details .group-name,
+      .sidebar .author-details .section{
+        color: white;
+        font-size: 20px;
+        font-weight: 500;
+        white-space: nowrap;
+      }
+
+      .sidebar.inactive .author-details i,
+      .sidebar.inactive .author-details .group-name,
+      .sidebar.inactive .author-details .section{
+        display: none;
+      }
+
+      .sidebar .author-details .section{
+        font-size: 15px;
+      }
+
+      .main{
+        height: 100%;
+        top: 0;
+        left: 260px;
+        width: calc(100% - 78px);
+        transition: all 0.5s ease;
+        margin-left: 78px;
+      }
+
+      .sidebar.inactive ~ .main{
+        left: 78px;
+        width: calc(100% - 78px);
+      }
+
+      .main #top{
+        display: inline-block;
+        height: 60px;
+        left: 78px;
+        background-color: #d9e5fa;
+        transition: all 0.5s ease;
+      }
+
+      .sidebar.inactive ~ .main #top{
+        left: 78px;
+        transition: all 0.5s ease;
+      }
+
+      .sidebar ~ .main #top{
+        left: 260px;
+        transition: all 0.5s ease;
+      }
+
+      #logo{
+        max-height: 100%;
+        padding: 8px;
+      }
+        @media (max-width: 360px) {
+            #body{
+                width: 100%;
+                font-size: 10px;
+            }
+            #title{
+                font-size: 20px;
+            }
+            #a {
+                width: 64%;
+                margin-left: 70px;
+                padding: 2px;
+                height: 400px;
+            }
+            .mainsub {
+                font-size: 20px;
+                padding-bottom: 0px;
+                margin-bottom: 0px;
+            }
+            #subj {
+                font-size: 15px;
+                padding-top: 10px;
+            }
+            .iconsub {
+                padding: 8px;
+                margin: 0px;
+            }
+            #b {
+                width: 64%;
+                margin-left: 70px;
+                padding: 2px;
+                height: 380px;
+            }
+            #grade {
+                font-size: 20px;
+            }
+            .grades {
+                font-size: 15px;
+                margin: 0px;
+            }
+            #c {
+                width: 64%;
+                margin-left: 70px;
+                padding: 2px;
+                height: 400px;
+            }
+            .summary {
+                font-size: 15px;
+                margin-bottom: 10px;
+                width: 100%;
+                padding-left: 2px;
+            }
+            .s1 {
+                margin-left: 0px;
+                padding-left: 0px;
+            }
+            .s {
+                margin-left: 0px;
+                padding-left: 0px;
+            }
+        }
+    </style>
+</head>
+   
+<div id="body">
+    <div class="sidebar inactive">
+      <div class="logo-details">
+        <i class="fas fa-book-open icon"></i>
+        <div class="logo-name">GRADEBOOK</div>
+        <i class="fas fa-bars" id="btn"></i>
+      </div>
+
+      <ul class="navbar">
+        <li>
+          <a href="https://icieie.github.io/csproj/homepage%20(logged%20in).html">
+            <i class="fas fa-tachometer-alt"></i>
+            <span class="link-name">Dashboard</span>
+          </a>
+          <ul class="sub-menu blank">
+            <li><a class="link-name" href="https://icieie.github.io/csproj/homepage%20(logged%20in).html">Dashboard</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fas fa-home"></i>
+            <span class="link-name">Site Home</span>
+          </a>
+          <ul class="sub-menu blank">
+            <li><a class="link-name" href="#">Site Home</a></li>
+          </ul>
+        </li>
+        <li>
+          <div class="drop-down">
+            <a href="#">
+            <i class="fas fa-user-graduate"></i>
+            <span class="link-name">My Courses</span>
+          </a>
+          <i class="fas fa-chevron-down arrow"></i>
+          </div>
+          <ul class="sub-menu">
+            <li><a class="link-name" href="#">My Courses</a></li>
+            <li><a href="https://icieie.github.io/csproj/csproj/subjects/biosubject.html">Biology 1</a></li>
+            <li><a href="https://icieie.github.io/csproj/csproj/subjects/chemsubject.html">Chemistry 1</a></li>
+            <li><a href="https://icieie.github.io/csproj/csproj/subjects/comscisubject.html">Computer Science 3</a></li>
+            <li><a href="https://icieie.github.io/csproj/csproj/subjects/englishsubject.html">English 3</a></li>
+            <li><a href="https://icieie.github.io/csproj/csproj/subjects/filipinosubject.html">Filipino 3</a></li>
+            <li><a href="https://icieie.github.io/csproj/csproj/subjects/healthsubject.html">Health 3</a></li>
+            <li><a href="https://icieie.github.io/csproj/csproj/subjects/mathsubject.html">Mathematics 3</a></li>
+            <li><a href="https://icieie.github.io/csproj/csproj/subjects/musicsubject.html">Music 3</a></li>
+            <li><a href="https://icieie.github.io/csproj/csproj/subjects/pesubject.html">Physical Education 3</a></li>
+            <li><a href="https://icieie.github.io/csproj/csproj/subjects/physicssubject.html">Physics 1</a></li>
+            <li><a href="https://icieie.github.io/csproj/csproj/subjects/socscisubject.html">Social Science 3</a></li>
+            <li><a href="https://icieie.github.io/csproj/csproj/subjects/statsubject.html">Statistics 1</a></li>
+            <li><a href="https://icieie.github.io/csproj/csproj/subjects/valedsubject.html">Values Education 3</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">
+            <i class="far fa-calendar-alt"></i>
+            <span class="link-name">Calendar</span>
+          </a>
+          <ul class="sub-menu blank">
+            <li><a class="link-name" href="#">Calendar</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="https://icieie.github.io/csproj/csproj/grades/biogrades.html">
+            <i class="fas fa-book-open"></i>
+            <span class="link-name">Gradebook</span>
+          </a>
+          <ul class="sub-menu blank">
+            <li><a class="link-name" href="https://icieie.github.io/csproj/csproj/grades/biogrades.html">Gradebook</a></li>
+          </ul>
+        </li>
+        <li>
+      <div class="author-details">
+        <div class="author-content">
+          <img src="profile.jpg" alt="Authors">
+        </div>
+        <div class="author-name">
+          <div class="group-name">Group 1</div>
+          <div class="section">9 - Balingkilat</div>
+        </div>
+        <a href="https://icieie.github.io/csproj/author.html"><i class="fas fa-laptop-code"></i></a>
+      </div>
+    </li>
+  </ul>
+    </div>
+    
+    <div class="main">
+    <div class="main">
+      <div class="fixed-top" id="top">
+        <img id="logo" alt="PSHS Logo" class="mx-auto d-block" src="pshs-logo.png">
+      </div>
+    </div>
+    
+    <div id="title">
+        <h2>COMPETENCIES</h2>
+    </div>
+    
+    <div>
+    <table id="subjtitle">
+        <tr>
+            <th id="subject">MUSIC</th>
+        </tr>
+    </table>
+    </div>
+    
+    <div class="grid-container">
+        <div id="a">
+            <p class="mainsub">SUBJECTS</p>
+            <table id="subj">
+                <tr>
+                    <td class="iconsub"><a href="https://icieie.github.io/csproj/csproj/grades/biogrades.html">
+                        <i class="fas fa-thin fa-dna"></i></a>
+                        <p>BIOLOGY</p></td>
+                    <td class="iconsub"><a href="https://icieie.github.io/csproj/csproj/grades/chemrgades.html">
+                        <i class="fas fa-thin fa-vial"></i></a>
+                        <p>CHEMISTRY</p></td>
+                    <td class="iconsub"><a href="https://icieie.github.io/csproj/comscigrades">
+                        <i class="fas fa-solid fa-desktop"></i></a>
+                        <p>COMPSCI</p></td>
+                </tr>
+                <tr>
+                    <td><a href="https://icieie.github.io/csproj/csproj/grades/englishgrades.html">
+                        <i class="fas fa-solid fa-book-open"></i></a>
+                        <p>ENGLISH</p></td>
+                    <td><a href="https://icieie.github.io/csproj/csproj/grades/filipinogrades.html">
+                        <i class="fas fa-thin fa-book"></i></a>
+                        <p>FILIPINO</p></td>
+                    <td><a href="https://icieie.github.io/csproj/csproj/grades/healthgrades.html">
+                        <i class="fas fa-thin fa-heart"></i></a>
+                        <p>HEALTH</p></td>
+                </tr>
+                <tr>
+                    <td><a href="https://icieie.github.io/csproj/csproj/grades/mathgrades.html">
+                        <i class="fas fa-thin fa-calculator"></i></a>
+                        <p>MATH</p></td>
+                    <td><a href="https://icieie.github.io/csproj/csproj/grades/musicgrades.html">
+                        <i class="fas fa-thin fa-music"></i></a>
+                        <p>MUSIC</p></td>
+                    <td><a href="https://icieie.github.io/csproj/csproj/grades/pegrades.html">
+                        <i class="fas fa-thin fa-dumbbell"></i></a>
+                        <p>PE</p></td>
+                </tr>
+                <tr>
+                    <td><a href="https://icieie.github.io/csproj/csproj/grades/physicsgrades.html">
+                        <i class="fas fa-thin fa-atom"></i></a>
+                        <p>PHYSICS</p></td>
+                    <td><a href="https://icieie.github.io/csproj/csproj/grades/socscigrades.html">
+                        <i class="fas fa-thin fa-landmark"></i></a>
+                        <p>SOCSCI</p></td>
+                    <td><a href="https://icieie.github.io/csproj/csproj/grades/statgrades.html">
+                        <i class="fas fa-thin fa-signal"></i></a>
+                        <p>STATS</p></td>
+                </tr>
+                <tr>
+                    <td> </td>
+                    <td><a href="https://icieie.github.io/csproj/csproj/grades/valedgrades.html">
+                        <i class="fas fa-thin fa-hand-holding-heart"></i></a>
+                        <p>VALED</p></td>
+                    <td> </td>
+                </tr>
+            </table>
+        </div>
+        
+        <div id="b">
+            <p class="mainsub">GRADES</p>
+            <table class="grades">
+                <tr>
+                    <td colspan="2" class="gradestitle">FORMATIVE - 25%</td>
+                </tr>
+                <tr>
+                    <td class="label">FA 1:</td>
+                    <td class="score">15/15</td>
+                </tr>
+                <tr>
+                    <td class="label">FA 2:</td>
+                    <td class="score">20/20</td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="gradestitle">ALTERNATIVE - 75%</td>
+                </tr>
+                <tr>
+                    <td class="label">AA 1:</td>
+                    <td class="score">30/30</td>
+                </tr>
+                <tr>
+                    <td id="raw">RAW GRADE:</td>
+                    <td class="score">100</td>
+                </tr>
+                <tr>
+                    <td id="final">FINAL GRADE: </td>
+                    <th class="score">1.00</th>
+                </tr>
+            </table>
+        </div>
+        </div>
+        
+        <div class="grid-container">
+        <div id="c">
+            <p class="mainsub">SUMMARY</p>
+            <table class="summary">
+                <tr class="s">
+                    <td class="s1">SUBJECT</td>
+                    <td class="grade">GRADE</td>
+                    <td class="grade">UNITS</td>
+                </tr>
+                <tr class="s">
+                    <td class="s1">Biology</td>
+                    <td class="grade">1.00</td>
+                    <td class="grade">1.00</td>
+                </tr>
+                <tr class="s">
+                    <td class="s1">Chemistry</td>
+                    <td class="grade">1.00</td>
+                    <td class="grade">1.00</td>
+                </tr>
+                <tr class="s">
+                    <td class="s1">Computer Science</td>
+                    <td class="grade">1.00</td>
+                    <td class="grade">1.00</td>
+                </tr>
+                <tr class="s">
+                    <td class="s1">English</td>
+                    <td class="grade">1.00</td>
+                    <td class="grade">1.00</td>
+                </tr>
+                <tr class="s">
+                    <td class="s1">Filipino</td>
+                    <td class="grade">1.00</td>
+                    <td class="grade">1.00</td>
+                </tr>
+                <tr class="s">
+                    <td class="s1">Health</td>
+                    <td class="grade">1.00</td>
+                    <td class="grade">1.00</td>
+                </tr>
+                <tr class="s">
+                    <td class="s1">Math</td>
+                    <td class="grade">1.00</td>
+                    <td class="grade">1.00</td>
+                </tr>
+                <tr class="s">
+                    <td class="s1">Music</td>
+                    <td class="grade">1.00</td>
+                    <td class="grade">1.00</td>
+                </tr>
+                <tr class="s">
+                    <td class="s1">Physical Education</td>
+                    <td class="grade">1.00</td>
+                    <td class="grade">1.00</td>
+                </tr>
+                <tr class="s">
+                    <td class="s1">Physics</td>
+                    <td class="grade">1.00</td>
+                    <td class="grade">1.00</td>
+                </tr>
+                <tr class="s">
+                    <td class="s1">Social Science</td>
+                    <td class="grade">1.00</td>
+                    <td class="grade">1.00</td>
+                </tr>
+                <tr class="s">
+                    <td class="s1">Statistics</td>
+                    <td class="grade">1.00</td>
+                    <td class="grade">1.00</td>
+                </tr>
+                <tr class="s">
+                    <th class="s1">GWA</th>
+                    <th class="grade">1.00</th>
+                    <td class="grade">12.00</td>
+                </tr>
+            </table>
+        </div> 
+    </div>
+    </div>
+    
+    <div class="main">
+    <div id="footer" class="container-fluid">
+        <h3>
+            Stay in touch
+        </h3>
+        <ul>
+            <li>
+                <i class="fas fa-globe"></i>
+                <a href="https://clc.pshs.edu.ph" target="_blank">https://clc.pshs.edu.ph</a>
+            </li>
+            <li>
+                <i class="fas fa-phone-alt"></i>
+                <a href="tel:Tel.No:(045)4990136" target="_blank">Tel. No :  (045) 499 0136</a>
+            </li>
+            <li>
+                <i class="fas fa-envelope"></i>
+                <a href="mailto:khub@clc.pshs.edu.ph" target="_blank">khub@clc.pshs.edu.ph</a>
+            </li>
+    </ul>
+    </div>
+    </div>
+    
+    <script>
+      let arrow = document.querySelectorAll(".arrow");
+      console.log(arrow);
+      for (var i = 0; i< arrow.length; i++) {
+          arrow[i].addEventListener("click", (e)=>{
+        let arrowParent = e.target.parentElement.parentElement;
+        arrowParent.classList.toggle("showMenu");
+        });
+      }
+
+      let sidebar = document.querySelector(".sidebar");
+      let sidebarBtn = document.querySelector(".fa-bars");
+      console.log(sidebarBtn);
+      sidebarBtn.addEventListener("click", ()=>{
+        sidebar.classList.toggle("inactive");
+      });
+    </script>
+    </div>
+</html>
