@@ -18,13 +18,20 @@
             height: 100%;
             margin: 0px;
             padding: 0px;
-            overflow-x: hidden; 
+            overflow-x: hidden;
+            background-color: #fafafa;
+            color: #253761;
         }
-        
+
         #footer {
-            background-color:lightgray;
+            background-color:#364fa6;
             padding-bottom:10px;
             margin-bottom: 0px;
+            color: #fff;
+        }
+
+        #footer a{
+          color: #fff;
         }
 
         #footer h3 {
@@ -32,32 +39,37 @@
             padding-top:10px;
             margin-bottom: 0px;
         }
-        
+
         ul {
             list-style-type:none;
             margin:0px;
         }
-        
+
         #title {
             text-align: center;
             margin-top: 75px;
         }
-        
+
         #top {
             height:60px;
-            background-color:lightgray;
+            background-color: #d9e5fa;
+            box-shadow: 0 20px 15px -15px #edf0fd;
         }
-        
+
+        #fixed-top {
+          background-color: #d9e5fa;
+        }
+
         #logo {
             max-height:100%;
             padding:8px;
         }
-        
+
         #subject {
             text-align: center;
             align-content: center;
         }
-        
+
         #c {
             display: grid;
             grid-gap: 12px;
@@ -69,7 +81,7 @@
             justify-content: center;
             margin: auto;
         }
-        
+
         .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(430px, 3fr));
@@ -82,21 +94,22 @@
             align-self: center;
             justify-content: center;
         }
-        
+
         .grid-container > div {
-            border: 1px solid black;
+            border: 1px solid #253761;
+            border-radius: 5px;
             text-align: center;
             font-size: 30px;
         }
-        
+
         .iconsub {
             padding-top: 20px;
         }
-        
+
         .mainsub {
             padding-top: 10px;
         }
-        
+
         #subj{
             text-align: center;
             align-content: center;
@@ -104,7 +117,7 @@
             border-top: 1px solid black;
             padding-bottom: 0px;
         }
-        
+
         .grades{
             text-align: center;
             align-content: center;
@@ -112,21 +125,21 @@
             width: 100%;
             border-top: 1px solid black;
         }
-        
+
         .gradestitle {
             text-align: left;
             padding: 10px;
         }
-        
+
         .label {
             text-align: left;
             padding-left: 30px;
         }
-        
+
         .score {
             padding-right: 10px;
         }
-        
+
         #raw {
             text-align: left;
             padding-left: 10px;
@@ -134,7 +147,7 @@
             padding-top: 10px;
             padding-bottom: 0px;
         }
-        
+
         #final {
             text-align: left;
             padding-left: 10px;
@@ -142,29 +155,29 @@
             padding-top: 0px;
             padding-bottom: 5px;
         }
-        
+
         .summary{
             width: 100%;
             border-top: 1px solid black;
             border-bottom: 1px solid black;
         }
-        
+
         .s {
             text-align: left;
             padding-left: 30px;
             border-bottom: 1px solid black;
             border-bottom: 1px solid black;
         }
-        
+
         .s1 {
             padding-left: 60px;
         }
-        
+
         .grade {
             text-align: center;
             padding-right: 15px;
         }
-        
+
         #subjtitle {
             border: 1px solid black;
             padding: 10px;
@@ -186,7 +199,7 @@
         left: 0;
         height: 100%;
         width: 260px;
-        background: gray;
+        background: #6d8fed;
         z-index: 100;
         transition: all 0.5s ease;
       }
@@ -265,7 +278,7 @@
       }
 
       .sidebar .navbar li:hover{
-        background: rgb(130, 136, 185);
+        background: #364fa6;
         list-style: none;
         transition: all 0.4s ease;
       }
@@ -274,6 +287,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        background-color: #364fa6;
       }
 
       .sidebar.inactive .navbar li .drop-down{
@@ -319,14 +333,14 @@
       .sidebar .navbar li .sub-menu{
         padding: 6px 6px 14px 80px;
         margin-top: -10px;
-        background: rgb(130, 136, 185);
+        background: #364fa6;
         display: none;
       }
 
       .sidebar .navbar li.showMenu .sub-menu{
         display: block;
       }
-      
+
       .sidebar .navbar li .sub-menu a{
         color: white;
         font-size: 15px;
@@ -459,7 +473,7 @@
         display: inline-block;
         height: 60px;
         left: 78px;
-        background-color: lightgrey;
+        background-color: #d9e5fa;
         transition: all 0.5s ease;
       }
 
@@ -472,27 +486,11 @@
         left: 260px;
         transition: all 0.5s ease;
       }
-            
+
       #logo{
         max-height: 100%;
         padding: 8px;
       }
-        
-        @font-face {
-          src: url('../../../Fonts/Raleway-Regular.ttf');
-          font-family: reg;
-        }
-
-        @font-face {
-          src: url('../../../Fonts/Raleway-Bold.ttf');
-          font-family: thicker;
-        }
-
-        @font-face {
-          src: url('../../../Fonts/Raleway-Black.ttf');
-          font-family: thickest;
-        }
-        
         @media (max-width: 360px) {
             #body{
                 width: 100%;
@@ -556,7 +554,7 @@
         }
     </style>
 </head>
-   
+
 <div id="body">
     <div class="sidebar inactive">
       <div class="logo-details">
@@ -567,12 +565,12 @@
 
       <ul class="navbar">
         <li>
-          <a href="https://icieie.github.io/csproj/homepage%20(logged%20in).html">
+          <a href="#">
             <i class="fas fa-tachometer-alt"></i>
             <span class="link-name">Dashboard</span>
           </a>
           <ul class="sub-menu blank">
-            <li><a class="link-name" href="https://icieie.github.io/csproj/homepage%20(logged%20in).html">Dashboard</a></li>
+            <li><a class="link-name" href="#">Dashboard</a></li>
           </ul>
         </li>
         <li>
@@ -594,19 +592,19 @@
           </div>
           <ul class="sub-menu">
             <li><a class="link-name" href="#">My Courses</a></li>
-            <li><a href="https://icieie.github.io/csproj/csproj/subjects/biosubject.html">Biology 1</a></li>
-            <li><a href="https://icieie.github.io/csproj/csproj/subjects/chemsubject.html">Chemistry 1</a></li>
-            <li><a href="https://icieie.github.io/csproj/csproj/subjects/comscisubject.html">Computer Science 3</a></li>
-            <li><a href="https://icieie.github.io/csproj/csproj/subjects/englishsubject.html">English 3</a></li>
-            <li><a href="https://icieie.github.io/csproj/csproj/subjects/filipinosubject.html">Filipino 3</a></li>
-            <li><a href="https://icieie.github.io/csproj/csproj/subjects/healthsubject.html">Health 3</a></li>
-            <li><a href="https://icieie.github.io/csproj/csproj/subjects/mathsubject.html">Mathematics 3</a></li>
-            <li><a href="https://icieie.github.io/csproj/csproj/subjects/musicsubject.html">Music 3</a></li>
-            <li><a href="https://icieie.github.io/csproj/csproj/subjects/pesubject.html">Physical Education 3</a></li>
-            <li><a href="https://icieie.github.io/csproj/csproj/subjects/physicssubject.html">Physics 1</a></li>
-            <li><a href="https://icieie.github.io/csproj/csproj/subjects/socscisubject.html">Social Science 3</a></li>
-            <li><a href="https://icieie.github.io/csproj/csproj/subjects/statsubject.html">Statistics 1</a></li>
-            <li><a href="https://icieie.github.io/csproj/csproj/subjects/valedsubject.html">Values Education 3</a></li>
+            <li><a href="#">Biology 1</a></li>
+            <li><a href="#">Chemistry 1</a></li>
+            <li><a href="#">Computer Science 3</a></li>
+            <li><a href="#">English 3</a></li>
+            <li><a href="#">Filipino 3</a></li>
+            <li><a href="#">Health 3</a></li>
+            <li><a href="#">Mathematics 3</a></li>
+            <li><a href="#">Music 3</a></li>
+            <li><a href="#">Physical Education 3</a></li>
+            <li><a href="#">Physics 1</a></li>
+            <li><a href="#">Social Science 3</a></li>
+            <li><a href="#">Statistics 1</a></li>
+            <li><a href="#">Values Education 3</a></li>
           </ul>
         </li>
         <li>
@@ -619,12 +617,12 @@
           </ul>
         </li>
         <li>
-          <a href="https://icieie.github.io/csproj/csproj/grades/biogrades.html">
+          <a href="https://icieie.github.io/csproj">
             <i class="fas fa-book-open"></i>
             <span class="link-name">Gradebook</span>
           </a>
           <ul class="sub-menu blank">
-            <li><a class="link-name" href="https://icieie.github.io/csproj/csproj/grades/biogrades.html">Gradebook</a></li>
+            <li><a class="link-name" href="https://icieie.github.io/csproj">Gradebook</a></li>
           </ul>
         </li>
         <li>
@@ -636,23 +634,23 @@
           <div class="group-name">Group 1</div>
           <div class="section">9 - Balingkilat</div>
         </div>
-        <a href="https://icieie.github.io/csproj/author.html"><i class="fas fa-laptop-code"></i></a>
+        <a href="author.html"><i class="fas fa-laptop-code"></i></a>
       </div>
     </li>
   </ul>
     </div>
-    
+
     <div class="main">
     <div class="main">
       <div class="fixed-top" id="top">
         <img id="logo" alt="PSHS Logo" class="mx-auto d-block" src="pshs-logo.png">
       </div>
     </div>
-    
+
     <div id="title">
         <h2>COMPETENCIES</h2>
     </div>
-    
+
     <div>
     <table id="subjtitle">
         <tr>
@@ -660,16 +658,16 @@
         </tr>
     </table>
     </div>
-    
+
     <div class="grid-container">
         <div id="a">
             <p class="mainsub">SUBJECTS</p>
             <table id="subj">
                 <tr>
-                    <td class="iconsub"><a href="https://icieie.github.io/csproj/csproj/grades/biogrades.html">
+                    <td class="iconsub"><a href="https://icieie.github.io/csproj/index">
                         <i class="fas fa-thin fa-dna"></i></a>
                         <p>BIOLOGY</p></td>
-                    <td class="iconsub"><a href="https://icieie.github.io/csproj/csproj/grades/chemrgades.html">
+                    <td class="iconsub"><a href="https://icieie.github.io/csproj/chemgrades">
                         <i class="fas fa-thin fa-vial"></i></a>
                         <p>CHEMISTRY</p></td>
                     <td class="iconsub"><a href="https://icieie.github.io/csproj/comscigrades">
@@ -677,48 +675,48 @@
                         <p>COMPSCI</p></td>
                 </tr>
                 <tr>
-                    <td><a href="https://icieie.github.io/csproj/csproj/grades/englishgrades.html">
+                    <td><a href="https://icieie.github.io/csproj/englishgrades">
                         <i class="fas fa-solid fa-book-open"></i></a>
                         <p>ENGLISH</p></td>
-                    <td><a href="https://icieie.github.io/csproj/csproj/grades/filipinogrades.html">
+                    <td><a href="https://icieie.github.io/csproj/filipinogrades">
                         <i class="fas fa-thin fa-book"></i></a>
                         <p>FILIPINO</p></td>
-                    <td><a href="https://icieie.github.io/csproj/csproj/grades/healthgrades.html">
+                    <td><a href="https://icieie.github.io/csproj/healthgrades">
                         <i class="fas fa-thin fa-heart"></i></a>
                         <p>HEALTH</p></td>
                 </tr>
                 <tr>
-                    <td><a href="https://icieie.github.io/csproj/csproj/grades/mathgrades.html">
+                    <td><a href="https://icieie.github.io/csproj/mathgrades">
                         <i class="fas fa-thin fa-calculator"></i></a>
                         <p>MATH</p></td>
-                    <td><a href="https://icieie.github.io/csproj/csproj/grades/musicgrades.html">
+                    <td><a href="https://icieie.github.io/csproj/musicgrades">
                         <i class="fas fa-thin fa-music"></i></a>
                         <p>MUSIC</p></td>
-                    <td><a href="https://icieie.github.io/csproj/csproj/grades/pegrades.html">
+                    <td><a href="https://icieie.github.io/csproj/pegrades">
                         <i class="fas fa-thin fa-dumbbell"></i></a>
                         <p>PE</p></td>
                 </tr>
                 <tr>
-                    <td><a href="https://icieie.github.io/csproj/csproj/grades/physicsgrades.html">
+                    <td><a href="https://icieie.github.io/csproj/physicsgrades">
                         <i class="fas fa-thin fa-atom"></i></a>
                         <p>PHYSICS</p></td>
-                    <td><a href="https://icieie.github.io/csproj/csproj/grades/socscigrades.html">
+                    <td><a href="https://icieie.github.io/csproj/socscigrades">
                         <i class="fas fa-thin fa-landmark"></i></a>
                         <p>SOCSCI</p></td>
-                    <td><a href="https://icieie.github.io/csproj/csproj/grades/statgrades.html">
+                    <td><a href="https://icieie.github.io/csproj/statgrades">
                         <i class="fas fa-thin fa-signal"></i></a>
                         <p>STATS</p></td>
                 </tr>
                 <tr>
                     <td> </td>
-                    <td><a href="https://icieie.github.io/csproj/csproj/grades/valedgrades.html">
+                    <td><a href="https://icieie.github.io/csproj/valed">
                         <i class="fas fa-thin fa-hand-holding-heart"></i></a>
                         <p>VALED</p></td>
                     <td> </td>
                 </tr>
             </table>
         </div>
-        
+
         <div id="b">
             <p class="mainsub">GRADES</p>
             <table class="grades">
@@ -766,7 +764,7 @@
             </table>
         </div>
         </div>
-        
+
         <div class="grid-container">
         <div id="c">
             <p class="mainsub">SUMMARY</p>
@@ -842,10 +840,10 @@
                     <td class="grade">12.00</td>
                 </tr>
             </table>
-        </div> 
+        </div>
     </div>
     </div>
-    
+
     <div class="main">
     <div id="footer" class="container-fluid">
         <h3>
@@ -867,7 +865,7 @@
     </ul>
     </div>
     </div>
-    
+
     <script>
       let arrow = document.querySelectorAll(".arrow");
       console.log(arrow);
