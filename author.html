@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Template</title>
+    <title>Authors Page</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
@@ -9,17 +9,25 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/aa5d6ed42b.js" crossorigin="anonymous"></script>
+    
 
     <style>
         html, body {
             height:100%;
+            background-color: #fafafa;
+            color: #253761;
+        }
+
+        i {
+          color: #fff;
         }
 
         #top {
             display: inline-block;
             height: 60px;
             left: 78px;
-            background-color: lightgrey;
+            background-color: #d9e5fa;
+            box-shadow: 0 20px 15px -15px #edf0fd;
             transition: all 0.5s ease;
         }
 
@@ -29,8 +37,10 @@
         }
         
         #content {
-            margin-top:80px;
+            padding-top:80px;
             flex-grow:1;
+            width:100%;
+            height:auto;
         }
 
         #mta {
@@ -38,6 +48,15 @@
             text-align:center;
             border-radius:15px;
             margin-bottom:10px;
+            background-color:#364fa6;
+            color:white;
+        }
+
+        #authors {
+            display:flex;
+            flex-direction:row;
+            justify-content:space-around;
+            flex-flow:wrap;
         }
 
         .profile {
@@ -46,27 +65,38 @@
             float:left;
             border-radius:15px;
             text-align:center;
+            height:600px;
+            box-sizing:border-box;
+            background-color: #d9e5fa;            
         }
 
         .profile img {
             max-width:80%;
-            margin:20px;
+            margin-left:auto;
+            margin-right:auto;
+            margin-top:20px;
         }
 
         #footer {
-            background-color:lightgray;
+            background-color:#364fa6;
             padding-bottom:10px;
             float:left;
+        }
+
+        #footer a {
+          color: #fafafa;
         }
 
         #footer h3 {
             margin-left:20px;
             padding-top:10px;
+            color: #fafafa;
         }
 
         #info {
             list-style-type:none;
             margin:0px;
+            color: #fafafa;
         }
 
         .sidebar{
@@ -75,7 +105,7 @@
             left: 0;
             height: 100%;
             width: 260px;
-            background: gray;
+            background: #6d8fed;
             z-index: 100;
             transition: all 0.5s ease;
         }
@@ -334,7 +364,7 @@
             height: 100%;
             top: 0;
             left: 260px;
-            width: calc(100%-78px);
+            width: calc(100% - 78px);
             margin-left:78px;
             transition: all 0.5s ease;
             z-index: 2;
@@ -344,7 +374,7 @@
 
         .sidebar.inactive ~ .main{
             left: 78px;
-            width: calc(100%-78px);
+            width: calc(100% - 78px);
         }
 
         .sidebar.inactive ~ .main #top{
@@ -357,92 +387,112 @@
             transition: all 0.5s ease;
         }
 
+        @media screen and (max-width:1427.5px) {
+            .profile {
+                height:300px;
+            }
+        }
+
+        @font-face {
+            src: url('../../../Fonts/Raleway-Regular.ttf');
+            font-family: reg;
+        }
+
+        @font-face {
+            src: url('../../../Fonts/Raleway-Bold.ttf');
+            font-family: thicker;
+        }
+
+        @font-face {
+            src: url('../../../Fonts/Raleway-Black.ttf');
+            font-family: thickest;
+        }
     </style>
 </head>
 <body>
     <div class="sidebar inactive">
-      <div class="logo-details">
-        <i class="fas fa-book-open icon"></i>
-        <div class="logo-name">GRADEBOOK</div>
-        <i class="fas fa-bars" id="btn"></i>
-      </div>
-
-      <ul class="navbar">
-        <li>
-          <a href="https://icieie.github.io/csproj/homepage%20(logged%20in).html">
-            <i class="fas fa-tachometer-alt"></i>
-            <span class="link-name">Dashboard</span>
-          </a>
-          <ul class="sub-menu blank">
-            <li><a class="link-name" href="https://icieie.github.io/csproj/homepage%20(logged%20in).html">Dashboard</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="#">
-            <i class="fas fa-home"></i>
-            <span class="link-name">Site Home</span>
-          </a>
-          <ul class="sub-menu blank">
-            <li><a class="link-name" href="#">Site Home</a></li>
-          </ul>
-        </li>
-        <li>
-          <div class="drop-down">
-            <a href="#">
-            <i class="fas fa-user-graduate"></i>
-            <span class="link-name">My Courses</span>
-          </a>
-          <i class="fas fa-chevron-down arrow"></i>
-          </div>
-          <ul class="sub-menu">
-            <li><a class="link-name" href="#">My Courses</a></li>
-            <li><a href="https://icieie.github.io/csproj/csproj/subjects/biosubject.html">Biology 1</a></li>
-            <li><a href="https://icieie.github.io/csproj/csproj/subjects/chemsubject.html">Chemistry 1</a></li>
-            <li><a href="https://icieie.github.io/csproj/csproj/subjects/comscisubject.html">Computer Science 3</a></li>
-            <li><a href="https://icieie.github.io/csproj/csproj/subjects/englishsubject.html">English 3</a></li>
-            <li><a href="https://icieie.github.io/csproj/csproj/subjects/filipinosubject.html">Filipino 3</a></li>
-            <li><a href="https://icieie.github.io/csproj/csproj/subjects/healthsubject.html">Health 3</a></li>
-            <li><a href="https://icieie.github.io/csproj/csproj/subjects/mathsubject.html">Mathematics 3</a></li>
-            <li><a href="https://icieie.github.io/csproj/csproj/subjects/musicsubject.html">Music 3</a></li>
-            <li><a href="https://icieie.github.io/csproj/csproj/subjects/pesubject.html">Physical Education 3</a></li>
-            <li><a href="https://icieie.github.io/csproj/csproj/subjects/physicssubject.html">Physics 1</a></li>
-            <li><a href="https://icieie.github.io/csproj/csproj/subjects/socscisubject.html">Social Science 3</a></li>
-            <li><a href="https://icieie.github.io/csproj/csproj/subjects/statsubject.html">Statistics 1</a></li>
-            <li><a href="https://icieie.github.io/csproj/csproj/subjects/valedsubject.html">Values Education 3</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="#">
-            <i class="far fa-calendar-alt"></i>
-            <span class="link-name">Calendar</span>
-          </a>
-          <ul class="sub-menu blank">
-            <li><a class="link-name" href="#">Calendar</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="https://icieie.github.io/csproj/csproj/grades/biogrades.html">
-            <i class="fas fa-book-open"></i>
-            <span class="link-name">Gradebook</span>
-          </a>
-          <ul class="sub-menu blank">
-            <li><a class="link-name" href="https://icieie.github.io/csproj/csproj/grades/biogrades.html">Gradebook</a></li>
-          </ul>
-        </li>
-        <li>
-      <div class="author-details">
-        <div class="author-content">
-          <img src="profile.jpg" alt="Authors">
+        <div class="logo-details">
+            <i class="fas fa-laptop-code icon"></i>
+            <div class="logo-name">AUTHORS</div>
+            <i class="fas fa-bars" id="btn"></i>
         </div>
-        <div class="author-name">
-          <div class="group-name">Group 1</div>
-          <div class="section">9 - Balingkilat</div>
+    
+        <ul class="navbar">
+            <li>
+                <a href="#">
+                <i class="fas fa-tachometer-alt"></i>
+                <span class="link-name">Dashboard</span>
+                </a>
+                <ul class="sub-menu blank">
+                <li><a class="link-name" href="#">Dashboard</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                <i class="fas fa-home"></i>
+                <span class="link-name">Site Home</span>
+                </a>
+                <ul class="sub-menu blank">
+                <li><a class="link-name" href="#">Site Home</a></li>
+                </ul>
+            </li>
+            <li>
+                <div class="drop-down">
+                <a href="#">
+                <i class="fas fa-user-graduate"></i>
+                <span class="link-name">My Courses</span>
+                </a>
+                <i class="fas fa-chevron-down arrow"></i>
+                </div>
+                <ul class="sub-menu">
+                <li><a class="link-name" href="#">My Courses</a></li>
+                <li><a href="#">Biology 1</a></li>
+                <li><a href="#">Chemistry 1</a></li>
+                <li><a href="#">Computer Science 3</a></li>
+                <li><a href="#">English 3</a></li>
+                <li><a href="#">Filipino 3</a></li>
+                <li><a href="#">Health 3</a></li>
+                <li><a href="#">Mathematics 3</a></li>
+                <li><a href="#">Music 3</a></li>
+                <li><a href="#">Physical Education 3</a></li>
+                <li><a href="#">Physics 1</a></li>
+                <li><a href="#">Social Science 3</a></li>
+                <li><a href="#">Statistics 1</a></li>
+                <li><a href="#">Values Education 3</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                <i class="far fa-calendar-alt"></i>
+                <span class="link-name">Calendar</span>
+                </a>
+                <ul class="sub-menu blank">
+                <li><a class="link-name" href="#">Calendar</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="https://icieie.github.io/csproj">
+                  <i class="fas fa-book-open"></i>
+                  <span class="link-name">Gradebook</span>
+                </a>
+                <ul class="sub-menu blank">
+                  <li><a class="link-name" href="https://icieie.github.io/csproj">Gradebook</a></li>
+                </ul>
+              </li>
+            <li>
+            <div class="author-details">
+            <div class="author-content">
+                <img src="profile.jpg" alt="Authors">
+            </div>
+            <div class="author-name">
+                <div class="group-name">Group 1</div>
+                <div class="section">9 - Balingkilat</div>
+            </div>
+            <a href="author.html"><i class="fas fa-laptop-code"></i></a>
+            </div>
+        </li>
+        </ul>
         </div>
-        <a href="https://icieie.github.io/csproj/author.html"><i class="fas fa-laptop-code"></i></a>
-      </div>
-    </li>
-  </ul>
-    </div>
   
         <div class="main">
             <div class="fixed-top" id="top">
@@ -455,34 +505,36 @@
                         MEET THE AUTHORS
                     </h3>
                 </div>
-                <div class="card profile">
-                    <img src="ava.jpg" class="rounded-circle card-img-top img-fluid" alt="AC">
-                    <div class="card-body">
-                        <h5 class="btn" id="AC">Avaraine Cruz</h5>
+                <div id="authors">
+                    <div class="card profile">
+                        <img src="ava.jpg" class="rounded-circle card-img-top img-fluid" alt="AC">
+                        <div class="card-body">
+                            <h3 class="btn" id="AC">Avaraine Cruz</h3>
+                        </div>
                     </div>
-                </div>
-                <div class="card profile">
-                    <img src="gab.jpg" class="rounded-circle card-img-top img-fluid" alt="GG">
-                    <div class="card-body">
-                        <h5 class="btn" id="GG">Gabriel Gutierrez</h5>
+                    <div class="card profile">
+                        <img src="gab.jpg" class="rounded-circle card-img-top img-fluid" alt="GG">
+                        <div class="card-body">
+                            <h3 class="btn" id="GG">Gabriel Gutierrez</h3>
+                        </div>
                     </div>
-                </div>
-                <div class="card profile">
-                    <img src="gabby.jpg" class="rounded-circle card-img-top img-fluid" alt="GM">
-                    <div class="card-body">
-                        <h5 class="btn" id="GM">Gabrielle Malong</h5>
+                    <div class="card profile">
+                        <img src="gabby.jpg" class="rounded-circle card-img-top img-fluid" alt="GM">
+                        <div class="card-body">
+                            <h3 class="btn" id="GM">Gabrielle Malong</h3>
+                        </div>
                     </div>
-                </div>
-                <div class="card profile">
-                    <img src="anela.jpg" class="rounded-circle card-img-top img-fluid" alt="AS">
-                    <div class="card-body">
-                        <h5 class="btn" id="AS">Anela Samson</h5>
+                    <div class="card profile">
+                        <img src="anela.jpg" class="rounded-circle card-img-top img-fluid" alt="AS">
+                        <div class="card-body">
+                            <h3 class="btn" id="AS">Anela Samson</h3>
+                        </div>
                     </div>
-                </div>
-                <div class="card profile">
-                    <img src="ellie.png" class="rounded-circle card-img-top img-fluid" alt="PY">
-                    <div class="card-body">
-                        <h5 class="btn" id="PY">Patricia Yambao</h5>
+                    <div class="card profile">
+                        <img src="ellie.png" class="rounded-circle card-img-top img-fluid" alt="PY">
+                        <div class="card-body">
+                            <h3 class="btn" id="PY">Patricia Yambao</h3>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -510,31 +562,31 @@
     
     <script>
         $(document).ready(function(){
-        $('#AC').popover({title: "Contributions", content: "- Homepage (not logged-in) <br> - Author Page", trigger:"hover", html: true, placement: "bottom"}); 
+        $('#AC').popover({title: "Contributions", content: "- Homepage (not logged-in) <br> - Authors Page <br> - Header and Footer <br> - Subject/Course Page Code", trigger:"hover", html: true, placement: "bottom"}); 
         });
     </script>
 
     <script>
         $(document).ready(function(){
-          $('#GG').popover({title: "Contributions", content: "- Subject/Course Page <br> - Interface Designer", trigger:"hover", html: true, placement: "bottom"}); 
+          $('#GG').popover({title: "Contributions", content: "- Subject/Course Page Layout <br> - Interface Design <br> - Validation", trigger:"hover", html: true, placement: "bottom"}); 
         });
     </script>
 
     <script>
         $(document).ready(function(){
-        $('#GM').popover({title: "Contributions", content: "- Homepage (logged-in)", trigger:"hover", html: true, placement: "bottom"}); 
+        $('#GM').popover({title: "Contributions", content: "- Homepage (logged-in) <br> - Navigation Bar", trigger:"hover", html: true, placement: "bottom"}); 
         });
     </script>
     
     <script>
         $(document).ready(function(){
-          $('#AS').popover({title: "Contributions", content: "- Grades Page <br> - Validator/Editor", trigger:"hover", html: true, placement: "bottom"}); 
+          $('#AS').popover({title: "Contributions", content: "- Grades Page <br> - Subject/Course Page Code <br> - Validation <br> - Compiling", trigger:"hover", html: true, placement: "bottom"}); 
         });
     </script>
 
     <script>
         $(document).ready(function(){
-          $('#PY').popover({title: "Contributions", content: "- Quiz Page <br> - Interface Designer", trigger:"hover", html: true, placement: "bottom"}); 
+          $('#PY').popover({title: "Contributions", content: "- Quiz Page <br> - Interface Design", trigger:"hover", html: true, placement: "bottom"}); 
         });
     </script>
 
