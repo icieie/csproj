@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Music Course</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/aa5d6ed42b.js" crossorigin="anonymous"></script>
+    <style>
+        html,body
+        {
+            width: 100%;
+            height: 100%;
+            margin: 0px;
+            padding: 0px;
+            overflow-x: hidden;
+            background-color: #fafafa;
+            color: #253761;
+        }
+
+        i {
+          color: #fff;
+        }
+        
+        #top {
+            display: inline-block;
+            height: 60px;
+            left: 78px;
+            background-color: #d9e5fa;
+            transition: all 0.5s ease;
+        }
+
+        #logo {
+            max-height:100%;
+            padding:8px;
+        }
+
+        #content {
+            margin-top:80px;
+            flex-grow:1;
+        }
+
+        #footer {
+            background-color:#364fa6;
+            padding-bottom:10px;
+            margin-bottom: 0px;
+        }
+
+        #footer a {
+          color: #fafafa;
+        }
+
+        #footer h3 {
+            margin-left:20px;
+            padding-top:10px;
+            margin-bottom: 0px;
+            color: #fafafa;
+        }
+
+        ul {
+            list-style-type:none;
+            margin:0px;
+        }
+
+        #info {
+            list-style-type:none;
+            margin:0px;
+            color: #fafafa;
+        }
+
+        .sidebar{
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 260px;
+            background: #6d8fed;
+            z-index: 100;
+            transition: all 0.5s ease;
+        }
+
+        .sidebar.inactive{
+            width: 78px;
+        }
+
+        .sidebar .logo-details{
+            height: 60px;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .sidebar .logo-details .icon{
+            padding-left: 20px;
+        }
+
+        .sidebar.inactive .logo-details .icon{
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar .logo-details .logo-name{
+            font-size: 22px;
+            font-weight: 600;
+            color: white;
+            padding-left: 15px;
+            transition: 0.3s ease;
+            transition-delay: 0.1s;
+        }
+
+        .sidebar.inactive .logo-details .logo-name{
+            transition-delay: 0s;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .sidebar .logo-details #btn{
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            font-size: 22px;
+            text-align: center;
+        }
+
+        .sidebar i{
+            color: #fff;
+            height: 60px;
+            min-width: 50px;
+            font-size: 25px;
+            text-align: center;
+            line-height: 60px;
+        }
+
+        .sidebar .navbar{
+            display: block;
+            height: 100%;
+            padding: 30px 0 150px 0;
+            overflow: auto;
+        }
+
+        .sidebar.inactive .navbar{
+            overflow: visible;
+        }
+
+        .sidebar .navbar::-webkit-scrollbar{
+            display: none;
+        }
+
+        .sidebar .navbar li{
+            position: relative;
+            list-style: none;
+        }
+
+        .sidebar .navbar li:hover{
+            background: rgb(130, 136, 185);
+            list-style: none;
+            transition: all 0.4s ease;
+        }
+
+        .sidebar .navbar li .drop-down{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .sidebar.inactive .navbar li .drop-down{
+            display: block;
+        }
+
+        .sidebar .navbar li i{
+            height: 50px;
+            min-width: 78px;
+            text-align: center;
+            line-height: 50px;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar .navbar li.showMenu i.arrow{
+            transform: rotate(-180deg);
+        }
+
+        .sidebar.inactive .navbar i.arrow{
+            display: none;
+        }
+
+        .sidebar .navbar li a{
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .sidebar .navbar li a .link-name{
+            font-size: 18px;
+            font-weight: 400;
+            color: white;
+        }
+
+        .sidebar.inactive .navbar li a .link-name{
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .sidebar .navbar li .sub-menu{
+            padding: 6px 6px 14px 80px;
+            margin-top: -10px;
+            background: rgb(130, 136, 185);
+            display: none;
+        }
+
+        .sidebar .navbar li.showMenu .sub-menu{
+            display: block;
+        }
+
+        .sidebar .navbar li .sub-menu a{
+            color: white;
+            font-size: 15px;
+            padding: 5px 0;
+            white-space: nowrap;
+            opacity: 0.6;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar .navbar li .sub-menu a:hover{
+            opacity: 1;
+        }
+
+        .sidebar.inactive .navbar li .sub-menu{
+            position: absolute;
+            left: 100%;
+            top: -10px;
+            margin-top: 0;
+            padding: 10px 20px;
+            border-radius: 0 6px 6px 0;
+            opacity: 0;
+            display: block;
+            pointer-events: none;
+            transition: 0s;
+        }
+
+        .sidebar.inactive .navbar li:hover .sub-menu{
+            top: 0;
+            opacity: 1;
+            pointer-events: auto;
+            transition: all 0.4s ease;
+        }
+
+        .sidebar .navbar li .sub-menu .link-name{
+            display: none;
+        }
+
+        .sidebar.inactive .navbar li .sub-menu .link-name{
+            display: none;
+        }
+
+        .sidebar.inactive .navbar li .sub-menu .link-name{
+            font-size: 18px;
+            opacity: 1;
+            display: block;
+        }
+
+        .sidebar .navbar li .sub-menu.blank{
+            opacity: 1;
+            pointer-events: auto;
+            padding: 3px 20px 6px 16px;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .sidebar .navbar li:hover .sub-menu.blank{
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .sidebar .author-details{
+            position: fixed;
+            bottom: 0;
+            width: 260px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgb(130, 136, 185);
+            padding: 12px 0;
+            transition: all 0.5s ease;
+        }
+
+        .sidebar.inactive .author-details{
+            background: none;
+            width: 78px;
+        }
+
+        .sidebar .author-details .author-content{
+            display: flex;
+            align-items: center;
+        }
+
+        .sidebar .author-details img{
+            height: 52px;
+            width: 52px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin: 0 14px 0 12px;
+            background: rgb(130, 136, 185);
+            transition: all 0.5s ease;
+        }
+
+        .sidebar.inactive .author-details img{
+            padding: 10px;
+        }
+
+        .sidebar .author-details .group-name,
+        .sidebar .author-details .section{
+            color: white;
+            font-size: 20px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .sidebar.inactive .author-details i,
+        .sidebar.inactive .author-details .group-name,
+        .sidebar.inactive .author-details .section{
+            display: none;
+        }
+
+        .sidebar .author-details .section{
+            font-size: 15px;
+        }
+
+        .main{
+            height: 100%;
+            top: 0;
+            left: 260px;
+            width: calc(100% - 78px);
+            transition: all 0.5s ease;
+            margin-left: 78px;
+        }
+
+        .main #top{
+            display: inline-block;
+            height: 60px;
+            left: 78px;
+            background-color: #d9e5fa;
+            box-shadow: 0 20px 15px -15px #edf0fd;
+            transition: all 0.5s ease;
+          }
+
+        .sidebar.inactive ~ .main{
+            left: 78px;
+            width: calc(100% - 78px);
+        }
+
+        .sidebar.inactive ~ .main #top{
+            left: 78px;
+            transition: all 0.5s ease;
+        }
+
+        .sidebar ~ .main #top{
+            left: 260px;
+            transition: all 0.5s ease;
+        }
+
+        #subjtitle {
+            float: left;
+        }
+
+        #schedule {
+            float:left;
+            margin-right: 5vw;
+        }
+
+        .day {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .time {
+            padding-left: 12px;
+        }
+
+        #schedtitle {
+            padding-top: 6px;
+        }
+
+        #dltitle {
+            padding-top: 6px;
+        }
+
+        #deadlines {
+            float: left;
+        }
+
+        .line {
+            border-right: 1px solid black;
+            padding-right: 10px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(440px, 3fr));
+            width: 100%;
+        }
+
+        .grid-container > div {
+            text-align: left;
+            padding-bottom: 20px;
+        }
+
+        #announcements {
+            align-self: center;
+            justify-content: center;
+            border: 2px solid black;
+            margin: auto;
+            margin-bottom: 10px;
+        }
+
+        #announcements1 {
+            align-self: center;
+            justify-content: center;
+            border: 2px solid black;
+            margin: auto;
+            margin-bottom: 10px;
+        }
+
+        #announcements2 {
+            align-self: center;
+            justify-content: center;
+            border: 2px solid black;
+            margin: auto;
+            margin-bottom: 10px;
+        }
+
+        #announcements3 {
+            align-self: center;
+            justify-content: center;
+            border: 2px solid black;
+            margin: auto;
+            margin-bottom: 10px;
+        }
+
+        #announcements4 {
+            align-self: center;
+            justify-content: center;
+            border: 2px solid black;
+            margin: auto;
+            margin-bottom: 10px;
+        }
+
+        .anntitle {
+            margin: auto;
+        }
+
+        .announcementstable{
+            text-align: center;
+            margin: auto;
+            width: 80%;
+            border: 1px solid black;
+            margin-bottom: 30px;
+        }
+
+        .aa {
+            border-bottom: 1px solid black;
+        }
+
+        .an {
+            margin-bottom: 0px;
+            text-align: center;
+        }
+
+        .lg {
+            text-align: center;
+            border: 1px solid black;
+            width: 55%;
+            padding-right: 40px;
+            padding-left: 40px;
+        }
+
+        .lg1 {
+            text-align: center;
+            padding-right: 40px;
+            padding-left: 40px;
+        }
+
+        .assessments {
+            text-align: center;
+            border: 1px solid black;
+            width: 55%;
+            padding-right: 40px;
+            padding-left: 40px;
+        }
+
+        .assessments1 {
+            text-align: center;
+            padding-right: 40px;
+            padding-left: 40px;
+        }
+
+        .week1 {
+            align-self: center;
+            justify-content: center;
+            margin: auto;
+            margin-bottom: 10px;
+        }
+
+        .space {
+            padding-left: 1vw;
+        }
+
+        @font-face {
+          src: url('../../../Fonts/Raleway-Regular.ttf');
+          font-family: reg;
+        }
+
+        @font-face {
+          src: url('../../../Fonts/Raleway-Bold.ttf');
+          font-family: thicker;
+        }
+
+        @font-face {
+          src: url('../../../Fonts/Raleway-Black.ttf');
+          font-family: thickest;
+        }
+
+        @media (max-width: 360px) {
+            .grid-container {
+                font-size: 2.6vw;
+            }
+
+            #space {
+                padding-left: 4vw;
+            }
+
+            .lg {
+                text-align: center;
+                font-size: 15px;
+                border: 1px solid black;
+                width: 100%;
+                padding-right: 4px;
+                padding-left: 4px;
+            }
+
+            .lg1 {
+                font-size: 12px;
+                width: 100%;
+                text-align: center;
+                padding-right: 5px;
+                padding-left: 5px;
+            }
+
+            .assessments {
+                text-align: center;
+                font-size: 15px;
+                border: 1px solid black;
+                padding-right: 4px;
+                padding-left: 4px;
+            }
+
+            .assessments1 {
+                font-size: 12px;
+                text-align: center;
+                padding-right: 5px;
+                padding-left: 5px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="sidebar inactive">
+      <div class="logo-details">
+        <i class="fas fa-book-open icon"></i>
+        <div class="logo-name">GRADEBOOK</div>
+        <i class="fas fa-bars" id="btn"></i>
+      </div>
+
+      <ul class="navbar">
+        <li>
+          <a href="https://icieie.github.io/csproj/homepage%20(logged%20in).html">
+            <i class="fas fa-tachometer-alt"></i>
+            <span class="link-name">Dashboard</span>
+          </a>
+          <ul class="sub-menu blank">
+            <li><a class="link-name" href="https://icieie.github.io/csproj/homepage%20(logged%20in).html">Dashboard</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fas fa-home"></i>
+            <span class="link-name">Site Home</span>
+          </a>
+          <ul class="sub-menu blank">
+            <li><a class="link-name" href="#">Site Home</a></li>
+          </ul>
+        </li>
+        <li>
+          <div class="drop-down">
+            <a href="#">
+            <i class="fas fa-user-graduate"></i>
+            <span class="link-name">My Courses</span>
+          </a>
+          <i class="fas fa-chevron-down arrow"></i>
+          </div>
+          <ul class="sub-menu">
+            <li><a class="link-name" href="#">My Courses</a></li>
+            <li><a href="https://icieie.github.io/csproj/csproj/subjects/biosubject.html">Biology 1</a></li>
+            <li><a href="https://icieie.github.io/csproj/csproj/subjects/chemsubject.html">Chemistry 1</a></li>
+            <li><a href="https://icieie.github.io/csproj/csproj/subjects/comscisubject.html">Computer Science 3</a></li>
+            <li><a href="https://icieie.github.io/csproj/csproj/subjects/englishsubject.html">English 3</a></li>
+            <li><a href="https://icieie.github.io/csproj/csproj/subjects/filipinosubject.html">Filipino 3</a></li>
+            <li><a href="https://icieie.github.io/csproj/csproj/subjects/healthsubject.html">Health 3</a></li>
+            <li><a href="https://icieie.github.io/csproj/csproj/subjects/mathsubject.html">Mathematics 3</a></li>
+            <li><a href="https://icieie.github.io/csproj/csproj/subjects/musicsubject.html">Music 3</a></li>
+            <li><a href="https://icieie.github.io/csproj/csproj/subjects/pesubject.html">Physical Education 3</a></li>
+            <li><a href="https://icieie.github.io/csproj/csproj/subjects/physicssubject.html">Physics 1</a></li>
+            <li><a href="https://icieie.github.io/csproj/csproj/subjects/socscisubject.html">Social Science 3</a></li>
+            <li><a href="https://icieie.github.io/csproj/csproj/subjects/statsubject.html">Statistics 1</a></li>
+            <li><a href="https://icieie.github.io/csproj/csproj/subjects/valedsubject.html">Values Education 3</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">
+            <i class="far fa-calendar-alt"></i>
+            <span class="link-name">Calendar</span>
+          </a>
+          <ul class="sub-menu blank">
+            <li><a class="link-name" href="#">Calendar</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="https://icieie.github.io/csproj/csproj/grades/biogrades.html">
+            <i class="fas fa-book-open"></i>
+            <span class="link-name">Gradebook</span>
+          </a>
+          <ul class="sub-menu blank">
+            <li><a class="link-name" href="https://icieie.github.io/csproj/csproj/grades/biogrades.html">Gradebook</a></li>
+          </ul>
+        </li>
+        <li>
+      <div class="author-details">
+        <div class="author-content">
+          <img src="profile.jpg" alt="Authors">
+        </div>
+        <div class="author-name">
+          <div class="group-name">Group 1</div>
+          <div class="section">9 - Balingkilat</div>
+        </div>
+        <a href="https://icieie.github.io/csproj/author.html"><i class="fas fa-laptop-code"></i></a>
+      </div>
+    </li>
+  </ul>
+    </div>
+  
+        <div class="main">
+            <div class="fixed-top" id="top">
+                <img id="logo" alt="PSHS logo" class="mx-auto d-block" src="pshs-logo.png">
+            </div>
+        
+            <div id="content">
+                <div class="container-fluid">
+                    <div class="grid-container" id="subject">
+                        <div id="a">
+                        <table id="subjtitle">
+                            <tr>
+                                <td><h1>MUSIC</h1></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-thin fa-user"></i> Ruselle B. Castro</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-thin fa-envelope"></i> rbcastro@clc.pshs.edu.ph</td>
+                            </tr>
+                        </table>
+                        </div>
+                        
+                        <div id="b">
+                        <table id="schedule">
+                            <tr>
+                                <th id="schedtitle">SCHEDULE</th>
+                                <th> </th>
+                                <th> </th>
+                            </tr>
+                            <tr>
+                                <td class="line">Synchronous</td>
+                                <td class="day">Tuesdays <br> (Week 1-3)</td>
+                                <td class="time"> 07:40 - 08:30 AM</td>
+                            </tr>
+                            <tr>
+                                <td class="line">Asynchronous</td>
+                                <td class="day">Tuesdays <br> (Week 4-9)</td>
+                                <td class="time"> 07:40 - 08:30 AM</td>
+                            </tr>
+                        </table>
+                        </div>
+                        
+                        <div id="c">
+                        <table id="deadlines">
+                            <tr>
+                                <th id="dltitle">DEADLINES</th>
+                                <th> </th>
+                                <th> </th>
+                                <th> </th>
+                            </tr>
+                            <tr>
+                                <td class="line">Quiz</td>
+                                <td class="day">February 10</td>
+                                <td>||</td>
+                                <td class="time">11:59 PM</td>
+                            </tr>
+                            <tr>
+                                <td class="line">Formative Assessment</td>
+                                <td class="day">February 14</td>
+                                <td>||</td>
+                                <td class="time">11:59 PM</td>
+                            </tr>
+                            <tr>
+                                <td class="line">Alternative Assessment</td>
+                                <td class="day">February 21</td>
+                                <td>||</td>
+                                <td class="time">11:59 PM</td>
+                            </tr>
+                        </table>
+                    </div>
+                    </div>
+                        
+                    <div>
+                        <div class="container-fluid" id="announcements4">
+                            <table class="anntitle">
+                                <tr>
+                                    <td><h4 class="an">ANNOUNCEMENTS</h4></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                        
+                        <table class="announcementstable">
+                            <tr class="aa">
+                                <td>DEADLINE EXTENSION</td>
+                                <td>FA: February 31</td>
+                            </tr>
+                            <tr class="aa">
+                                <td>DEADLINE EXTENSION</td>
+                                <td>AA: February 31</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">Completion of Alternative Assessment 1 before February 11 will merit exemption from the subject for the rest of the year.</td>
+                            </tr>
+                        </table>
+                        
+                    <div>
+                        <div class="container-fluid" id="announcements3">
+                            <table class="anntitle">
+                                <tr>
+                                    <td><h4 class="an">WEEK 1</h4></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                        
+                    <table class="week1">
+                        <tr>
+                            <td class="lg">Learning Guides</td>
+                            <td class="space"></td>
+                            <td class="assessments">Assessments</td>
+                        </tr>
+                        <tr>
+                            <td class="lg1">LG 3.1 - Brief historical Background of Music of the aroque Period</td>
+                            <td class="space"></td>
+                            <td class="assessments1">None</td>
+                        </tr>
+                    </table>
+                        
+                    <div>
+                        <div class="container-fluid" id="announcements2">
+                            <table class="anntitle">
+                                <tr>
+                                    <td><h4 class="an">WEEK 2</h4></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <table class="week1">
+                        <tr>
+                            <td class="lg">Learning Guides</td>
+                            <td class="space"></td>
+                            <td class="assessments">Assessments</td>
+                        </tr>
+                        <tr>
+                            <td class="lg1">LG 3.2 - Instrumental Music</td>
+                            <td class="space"></td>
+                            <td class="assessments1">FA & AA</td>
+                        </tr>
+                    </table>
+                        
+                    <div>
+                        <div class="container-fluid" id="announcements">
+                            <table class="anntitle">
+                                <tr>
+                                    <td><h4 class="an">EXTRA RESOURCES</h4></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                        
+                    <table class="week1">
+                        <tr>
+                            <td class="lg"><a href="https://drive.google.com/file/d/1oN2um_n2_Q2eB3ecdjoepjkGQ8XICjGf/view">References</a></td>
+                            <td class="space"></td>
+                            <td class="assessments"><a href="https://drive.google.com/file/d/1w81mfGsEqijuBwDnW-BgMHOzRQ8kZzgN/view?usp=sharing">Syllabus</a></td>
+                        </tr>
+                    </table>
+            </div>
+        </div>
+
+    <div id="footer" class="container-fluid">
+        <h3>
+            Stay in touch
+        </h3>
+        <ul>
+            <li>
+                <i class="fas fa-globe"></i>
+                <a href="https://clc.pshs.edu.ph" target="_blank">https://clc.pshs.edu.ph</a>
+            </li>
+            <li>
+                <i class="fas fa-phone-alt"></i>
+                <a href="tel:Tel.No:(045)4990136" target="_blank">Tel. No :  (045) 499 0136</a>
+            </li>
+            <li>
+                <i class="fas fa-envelope"></i>
+                <a href="mailto:khub@clc.pshs.edu.ph" target="_blank">khub@clc.pshs.edu.ph</a>
+            </li>
+    </ul>
+    </div>
+    
+    <script>
+        let arrow = document.querySelectorAll(".arrow");
+        console.log(arrow);
+        for (var i = 0; i< arrow.length; i++) {
+            arrow[i].addEventListener("click", (e)=>{
+        let arrowParent = e.target.parentElement.parentElement;
+        arrowParent.classList.toggle("showMenu");
+        });
+        }
+
+        let sidebar = document.querySelector(".sidebar");
+        let sidebarBtn = document.querySelector(".fa-bars");
+        console.log(sidebarBtn);
+        sidebarBtn.addEventListener("click", ()=>{
+        sidebar.classList.toggle("inactive");
+        });
+    </script>
+    </div>
+</body>
+</html>
