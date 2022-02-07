@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Grades Page</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="https://kit.fontawesome.com/31eef33995.js" crossorigin="anonymous"></script>
-        <script src="https://kit.fontawesome.com/807c993b6a.js" crossorigin="anonymous"></script>
+<head>
+    <title>Computer Science Course</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/aa5d6ed42b.js" crossorigin="anonymous"></script>
 
     <style>
         html,body
@@ -20,7 +19,25 @@
             padding: 0px;
             overflow-x: hidden; 
         }
+
+        #top {
+            display: inline-block;
+            height: 60px;
+            left: 78px;
+            background-color: lightgrey;
+            transition: all 0.5s ease;
+        }
+
+        #logo {
+            max-height:100%;
+            padding:8px;
+        }
         
+        #content {
+            margin-top:80px;
+            flex-grow:1;
+        }
+
         #footer {
             background-color:lightgray;
             padding-bottom:10px;
@@ -37,446 +54,450 @@
             list-style-type:none;
             margin:0px;
         }
-        
-        #title {
+
+        #info {
+            list-style-type:none;
+            margin:0px;
+        }
+
+        .sidebar{
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 260px;
+            background: gray;
+            z-index: 100;
+            transition: all 0.5s ease;
+        }
+
+        .sidebar.inactive{
+            width: 78px;
+        }
+
+        .sidebar .logo-details{
+            height: 60px;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .sidebar .logo-details .icon{
+            padding-left: 20px;
+        }
+
+        .sidebar.inactive .logo-details .icon{
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar .logo-details .logo-name{
+            font-size: 22px;
+            font-weight: 600;
+            color: white;
+            padding-left: 15px;
+            transition: 0.3s ease;
+            transition-delay: 0.1s;
+        }
+
+        .sidebar.inactive .logo-details .logo-name{
+            transition-delay: 0s;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .sidebar .logo-details #btn{
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            font-size: 22px;
             text-align: center;
-            margin-top: 75px;
         }
-        
-        #top {
-            height:60px;
-            background-color:lightgray;
-        }
-        
-        #logo {
-            max-height:100%;
-            padding:8px;
-        }
-        
-        #subject {
+
+        .sidebar i{
+            color: #fff;
+            height: 60px;
+            min-width: 50px;
+            font-size: 25px;
             text-align: center;
-            align-content: center;
+            line-height: 60px;
+        }
+
+        .sidebar .navbar{
+            display: block;
+            height: 100%;
+            padding: 30px 0 150px 0;
+            overflow: auto;
+        }
+
+        .sidebar.inactive .navbar{
+            overflow: visible;
+        }
+
+        .sidebar .navbar::-webkit-scrollbar{
+            display: none;
+        }
+
+        .sidebar .navbar li{
+            position: relative;
+            list-style: none;
+        }
+
+        .sidebar .navbar li:hover{
+            background: rgb(130, 136, 185);
+            list-style: none;
+            transition: all 0.4s ease;
+        }
+
+        .sidebar .navbar li .drop-down{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .sidebar.inactive .navbar li .drop-down{
+            display: block;
+        }
+
+        .sidebar .navbar li i{
+            height: 50px;
+            min-width: 78px;
+            text-align: center;
+            line-height: 50px;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar .navbar li.showMenu i.arrow{
+            transform: rotate(-180deg);
+        }
+
+        .sidebar.inactive .navbar i.arrow{
+            display: none;
+        }
+
+        .sidebar .navbar li a{
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .sidebar .navbar li a .link-name{
+            font-size: 18px;
+            font-weight: 400;
+            color: white;
+        }
+
+        .sidebar.inactive .navbar li a .link-name{
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .sidebar .navbar li .sub-menu{
+            padding: 6px 6px 14px 80px;
+            margin-top: -10px;
+            background: rgb(130, 136, 185);
+            display: none;
+        }
+
+        .sidebar .navbar li.showMenu .sub-menu{
+            display: block;
         }
         
-        #c {
-            display: grid;
-            grid-gap: 12px;
+        .sidebar .navbar li .sub-menu a{
+            color: white;
+            font-size: 15px;
+            padding: 5px 0;
+            white-space: nowrap;
+            opacity: 0.6;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar .navbar li .sub-menu a:hover{
+            opacity: 1;
+        }
+
+        .sidebar.inactive .navbar li .sub-menu{
+            position: absolute;
+            left: 100%;
+            top: -10px;
+            margin-top: 0;
+            padding: 10px 20px;
+            border-radius: 0 6px 6px 0;
+            opacity: 0;
+            display: block;
+            pointer-events: none;
+            transition: 0s;
+        }
+
+        .sidebar.inactive .navbar li:hover .sub-menu{
+            top: 0;
+            opacity: 1;
+            pointer-events: auto;
+            transition: all 0.4s ease;
+        }
+
+        .sidebar .navbar li .sub-menu .link-name{
+            display: none;
+        }
+
+        .sidebar.inactive .navbar li .sub-menu .link-name{
+            display: none;
+        }
+
+        .sidebar.inactive .navbar li .sub-menu .link-name{
+            font-size: 18px;
+            opacity: 1;
+            display: block;
+        }
+
+        .sidebar .navbar li .sub-menu.blank{
+            opacity: 1;
+            pointer-events: auto;
+            padding: 3px 20px 6px 16px;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .sidebar .navbar li:hover .sub-menu.blank{
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .sidebar .author-details{
+            position: fixed;
+            bottom: 0;
+            width: 260px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgb(130, 136, 185);
+            padding: 12px 0;
+            transition: all 0.5s ease;
+        }
+
+        .sidebar.inactive .author-details{
+            background: none;
+            width: 78px;
+        }
+
+        .sidebar .author-details .author-content{
+            display: flex;
+            align-items: center;
+        }
+
+        .sidebar .author-details img{
+            height: 52px;
+            width: 52px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin: 0 14px 0 12px;
+            background: rgb(130, 136, 185);
+            transition: all 0.5s ease;
+        }
+
+        .sidebar.inactive .author-details img{
             padding: 10px;
-            width: 98%;
-            margin-left: 10px;
-            margin-right: 0px;
-            align-self: center;
-            justify-content: center;
-            margin: auto;
+        }
+
+        .sidebar .author-details .group-name,
+        .sidebar .author-details .section{
+            color: white;
+            font-size: 20px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .sidebar.inactive .author-details i,
+        .sidebar.inactive .author-details .group-name,
+        .sidebar.inactive .author-details .section{
+            display: none;
+        }
+
+        .sidebar .author-details .section{
+            font-size: 15px;
+        }
+
+        .main{
+            height: 100%;
+            top: 0;
+            left: 260px;
+            width: calc(100% - 78px);
+            transition: all 0.5s ease;
+            margin-left: 78px;
+        }
+        
+        .main #top{
+            display: inline-block;
+            height: 60px;
+            left: 78px;
+            background-color: lightgrey;
+            transition: all 0.5s ease;
+          }
+
+        .sidebar.inactive ~ .main{
+            left: 78px;
+            width: calc(100% - 78px);
+        }
+
+        .sidebar.inactive ~ .main #top{
+            left: 78px;
+            transition: all 0.5s ease;
+        }
+
+        .sidebar ~ .main #top{
+            left: 260px;
+            transition: all 0.5s ease;
+        }
+        
+        #subjtitle {
+            float: left;
+        }
+        
+        #schedule {
+            float:left;
+            margin-right: 5vw;
+        }
+        
+        .day {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        
+        .time {
+            padding-left: 12px;
+        }
+        
+        #schedtitle {
+            padding-top: 6px;
+        }
+        
+        #dltitle {
+            padding-top: 6px;
+        }
+        
+        #deadlines {
+            float: left;
+        }
+        
+        .line {
+            border-right: 1px solid black;
+            padding-right: 10px;
         }
         
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(430px, 3fr));
-            grid-template-rows: repeat(auto-fit, minmax(450px, 3fr));
-            grid-gap: 12px;
-            padding: 10px;
-            width: 98%;
-            margin-left: 10px;
-            margin-right: 0px;
-            align-self: center;
-            justify-content: center;
+            grid-template-columns: repeat(auto-fit, minmax(440px, 3fr));
+            width: 100%;
         }
         
         .grid-container > div {
-            border: 1px solid black;
-            text-align: center;
-            font-size: 30px;
+            text-align: left;
+            padding-bottom: 20px;
         }
         
-        .iconsub {
-            padding-top: 20px;
-        }
-        
-        .mainsub {
-            padding-top: 10px;
-        }
-        
-        #subj{
-            text-align: center;
-            align-content: center;
-            width: 100%;
-            border-top: 1px solid black;
-            padding-bottom: 0px;
-        }
-        
-        .grades{
-            text-align: center;
-            align-content: center;
+        #announcements {
+            align-self: center;
+            justify-content: center;
+            border: 2px solid black;
             margin: auto;
-            width: 100%;
-            border-top: 1px solid black;
+            margin-bottom: 10px;
         }
         
-        .gradestitle {
-            text-align: left;
-            padding: 10px;
+        #announcements1 {
+            align-self: center;
+            justify-content: center;
+            border: 2px solid black;
+            margin: auto;
+            margin-bottom: 10px;
         }
         
-        .label {
-            text-align: left;
-            padding-left: 30px;
+        #announcements2 {
+            align-self: center;
+            justify-content: center;
+            border: 2px solid black;
+            margin: auto;
+            margin-bottom: 10px;
         }
         
-        .score {
-            padding-right: 10px;
+        #announcements3 {
+            align-self: center;
+            justify-content: center;
+            border: 2px solid black;
+            margin: auto;
+            margin-bottom: 10px;
         }
         
-        #raw {
-            text-align: left;
-            padding-left: 10px;
-            padding-right: 10px;
-            padding-top: 10px;
-            padding-bottom: 0px;
+        #announcements4 {
+            align-self: center;
+            justify-content: center;
+            border: 2px solid black;
+            margin: auto;
+            margin-bottom: 10px;
         }
         
-        #final {
-            text-align: left;
-            padding-left: 10px;
-            padding-right: 10px;
-            padding-top: 0px;
-            padding-bottom: 5px;
+        .anntitle {
+            margin: auto;
         }
         
-        .summary{
-            width: 100%;
-            border-top: 1px solid black;
-            border-bottom: 1px solid black;
-        }
-        
-        .s {
-            text-align: left;
-            padding-left: 30px;
-            border-bottom: 1px solid black;
-            border-bottom: 1px solid black;
-        }
-        
-        .s1 {
-            padding-left: 60px;
-        }
-        
-        .grade {
+        .announcementstable{
             text-align: center;
-            padding-right: 15px;
-        }
-        
-        #subjtitle {
+            margin: auto;
+            width: 80%;
             border: 1px solid black;
-            padding: 10px;
-            align-content: center;
-            text-align: center;
-            margin-left: auto;
-            margin-right: auto;
-            width: 65%;
+            margin-bottom: 30px;
         }
-        *{
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box
-      }
-
-      .sidebar{
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 260px;
-        background: gray;
-        z-index: 100;
-        transition: all 0.5s ease;
-      }
-
-      .sidebar.inactive{
-        width: 78px;
-      }
-
-      .sidebar .logo-details{
-        height: 60px;
-        display: flex;
-        align-items: center;
-        position: relative;
-      }
-
-      .sidebar .logo-details .icon{
-        padding-left: 20px;
-      }
-
-      .sidebar.inactive .logo-details .icon{
-        opacity: 0;
-        transition: all 0.3s ease;
-      }
-
-      .sidebar .logo-details .logo-name{
-        font-size: 22px;
-        font-weight: 600;
-        color: white;
-        padding-left: 15px;
-        transition: 0.3s ease;
-        transition-delay: 0.1s;
-      }
-
-      .sidebar.inactive .logo-details .logo-name{
-        transition-delay: 0s;
-        opacity: 0;
-        pointer-events: none;
-      }
-
-      .sidebar .logo-details #btn{
-        position: absolute;
-        top: 50%;
-        right: 15px;
-        transform: translateY(-50%);
-        font-size: 22px;
-        text-align: center;
-      }
-
-      .sidebar i{
-        color: #fff;
-        height: 60px;
-        min-width: 50px;
-        font-size: 25px;
-        text-align: center;
-        line-height: 60px;
-      }
-
-      .sidebar .navbar{
-        display: block;
-        height: 100%;
-        padding: 30px 0 150px 0;
-        overflow: auto;
-      }
-
-      .sidebar.inactive .navbar{
-        overflow: visible;
-      }
-
-      .sidebar .navbar::-webkit-scrollbar{
-        display: none;
-      }
-
-      .sidebar .navbar li{
-        position: relative;
-        list-style: none;
-      }
-
-      .sidebar .navbar li:hover{
-        background: rgb(130, 136, 185);
-        list-style: none;
-        transition: all 0.4s ease;
-      }
-
-      .sidebar .navbar li .drop-down{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-
-      .sidebar.inactive .navbar li .drop-down{
-        display: block;
-      }
-
-      .sidebar .navbar li i{
-        height: 50px;
-        min-width: 78px;
-        text-align: center;
-        line-height: 50px;
-        color: white;
-        font-size: 20px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-      }
-
-      .sidebar .navbar li.showMenu i.arrow{
-        transform: rotate(-180deg);
-      }
-
-      .sidebar.inactive .navbar i.arrow{
-        display: none;
-      }
-
-      .sidebar .navbar li a{
-        display: flex;
-        align-items: center;
-        text-decoration: none;
-      }
-
-      .sidebar .navbar li a .link-name{
-        font-size: 18px;
-        font-weight: 400;
-        color: white;
-      }
-
-      .sidebar.inactive .navbar li a .link-name{
-        opacity: 0;
-        pointer-events: none;
-      }
-
-      .sidebar .navbar li .sub-menu{
-        padding: 6px 6px 14px 80px;
-        margin-top: -10px;
-        background: rgb(130, 136, 185);
-        display: none;
-      }
-
-      .sidebar .navbar li.showMenu .sub-menu{
-        display: block;
-      }
-      
-      .sidebar .navbar li .sub-menu a{
-        color: white;
-        font-size: 15px;
-        padding: 5px 0;
-        white-space: nowrap;
-        opacity: 0.6;
-        transition: all 0.3s ease;
-      }
-
-      .sidebar .navbar li .sub-menu a:hover{
-        opacity: 1;
-      }
-
-      .sidebar.inactive .navbar li .sub-menu{
-        position: absolute;
-        left: 100%;
-        top: -10px;
-        margin-top: 0;
-        padding: 10px 20px;
-        border-radius: 0 6px 6px 0;
-        opacity: 0;
-        display: block;
-        pointer-events: none;
-        transition: 0s;
-      }
-
-      .sidebar.inactive .navbar li:hover .sub-menu{
-        top: 0;
-        opacity: 1;
-        pointer-events: auto;
-        transition: all 0.4s ease;
-      }
-
-      .sidebar .navbar li .sub-menu .link-name{
-        display: none;
-      }
-
-      .sidebar.inactive .navbar li .sub-menu .link-name{
-        display: none;
-      }
-
-      .sidebar.inactive .navbar li .sub-menu .link-name{
-        font-size: 18px;
-        opacity: 1;
-        display: block;
-      }
-
-      .sidebar .navbar li .sub-menu.blank{
-        opacity: 1;
-        pointer-events: auto;
-        padding: 3px 20px 6px 16px;
-        opacity: 0;
-        pointer-events: none;
-      }
-
-      .sidebar .navbar li:hover .sub-menu.blank{
-        top: 50%;
-        transform: translateY(-50%);
-      }
-
-      .sidebar .author-details{
-        position: fixed;
-        bottom: 0;
-        width: 260px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        background: rgb(130, 136, 185);
-        padding: 12px 0;
-        transition: all 0.5s ease;
-      }
-
-      .sidebar.inactive .author-details{
-        background: none;
-        width: 78px;
-      }
-
-      .sidebar .author-details .author-content{
-        display: flex;
-        align-items: center;
-      }
-
-      .sidebar .author-details img{
-        height: 52px;
-        width: 52px;
-        object-fit: cover;
-        border-radius: 16px;
-        margin: 0 14px 0 12px;
-        background: rgb(130, 136, 185);
-        transition: all 0.5s ease;
-      }
-
-      .sidebar.inactive .author-details img{
-        padding: 10px;
-      }
-
-      .sidebar .author-details .group-name,
-      .sidebar .author-details .section{
-        color: white;
-        font-size: 20px;
-        font-weight: 500;
-        white-space: nowrap;
-      }
-
-      .sidebar.inactive .author-details i,
-      .sidebar.inactive .author-details .group-name,
-      .sidebar.inactive .author-details .section{
-        display: none;
-      }
-
-      .sidebar .author-details .section{
-        font-size: 15px;
-      }
-
-      .main{
-        height: 100%;
-        top: 0;
-        left: 260px;
-        width: calc(100% - 78px);
-        transition: all 0.5s ease;
-        margin-left: 78px;
-      }
-
-      .sidebar.inactive ~ .main{
-        left: 78px;
-        width: calc(100% - 78px);
-      }
-
-      .main #top{
-        display: inline-block;
-        height: 60px;
-        left: 78px;
-        background-color: lightgrey;
-        transition: all 0.5s ease;
-      }
-
-      .sidebar.inactive ~ .main #top{
-        left: 78px;
-        transition: all 0.5s ease;
-      }
-
-      .sidebar ~ .main #top{
-        left: 260px;
-        transition: all 0.5s ease;
-      }
-            
-      #logo{
-        max-height: 100%;
-        padding: 8px;
-      }
+        
+        .aa {
+            border-bottom: 1px solid black;
+        }
+        
+        .an {
+            margin-bottom: 0px;
+            text-align: center;
+        }
+        
+        .lg {
+            text-align: center;
+            border: 1px solid black;
+            width: 55%;
+            padding-right: 40px;
+            padding-left: 40px;
+        }
+        
+        .lg1 {
+            text-align: center;
+            padding-right: 40px;
+            padding-left: 40px;
+        }
+        
+        .assessments {
+            text-align: center;
+            border: 1px solid black;
+            width: 55%;
+            padding-right: 40px;
+            padding-left: 40px;
+        }
+        
+        .assessments1 {
+            text-align: center;
+            padding-right: 40px;
+            padding-left: 40px;
+        }
+        
+        .week1 {
+            align-self: center;
+            justify-content: center;
+            margin: auto;
+            margin-bottom: 10px;
+        }
+        
+        .space {
+            padding-left: 1vw;
+        }
         
         @font-face {
           src: url('../../../Fonts/Raleway-Regular.ttf');
@@ -494,70 +515,50 @@
         }
         
         @media (max-width: 360px) {
-            #body{
+            .grid-container {
+                font-size: 2.6vw;
+            }
+            
+            #space {
+                padding-left: 4vw;
+            }
+            
+            .lg {
+                text-align: center;
+                font-size: 15px;
+                border: 1px solid black;
                 width: 100%;
-                font-size: 10px;
+                padding-right: 4px;
+                padding-left: 4px;
             }
-            #title{
-                font-size: 20px;
-            }
-            #a {
-                width: 64%;
-                margin-left: 70px;
-                padding: 2px;
-                height: 400px;
-            }
-            .mainsub {
-                font-size: 20px;
-                padding-bottom: 0px;
-                margin-bottom: 0px;
-            }
-            #subj {
-                font-size: 15px;
-                padding-top: 10px;
-            }
-            .iconsub {
-                padding: 8px;
-                margin: 0px;
-            }
-            #b {
-                width: 64%;
-                margin-left: 70px;
-                padding: 2px;
-                height: 380px;
-            }
-            #grade {
-                font-size: 20px;
-            }
-            .grades {
-                font-size: 15px;
-                margin: 0px;
-            }
-            #c {
-                width: 64%;
-                margin-left: 70px;
-                padding: 2px;
-                height: 400px;
-            }
-            .summary {
-                font-size: 15px;
-                margin-bottom: 10px;
+            
+            .lg1 {
+                font-size: 12px;
                 width: 100%;
-                padding-left: 2px;
+                text-align: center;
+                padding-right: 5px;
+                padding-left: 5px;
             }
-            .s1 {
-                margin-left: 0px;
-                padding-left: 0px;
+            
+            .assessments {
+                text-align: center;
+                font-size: 15px;
+                border: 1px solid black;
+                padding-right: 4px;
+                padding-left: 4px;
             }
-            .s {
-                margin-left: 0px;
-                padding-left: 0px;
+            
+            .assessments1 {
+                font-size: 12px;
+                text-align: center;
+                padding-right: 5px;
+                padding-left: 5px;
             }
         }
+
     </style>
 </head>
-   
-<div id="body">
+<body>
     <div class="sidebar inactive">
       <div class="logo-details">
         <i class="fas fa-book-open icon"></i>
@@ -641,212 +642,198 @@
     </li>
   </ul>
     </div>
-    
-    <div class="main">
-    <div class="main">
-      <div class="fixed-top" id="top">
-        <img id="logo" alt="PSHS Logo" class="mx-auto d-block" src="pshs-logo.png">
-      </div>
-    </div>
-    
-    <div id="title">
-        <h2>COMPETENCIES</h2>
-    </div>
-    
-    <div>
-    <table id="subjtitle">
-        <tr>
-            <th id="subject">BIOLOGY</th>
-        </tr>
-    </table>
-    </div>
-    
-    <div class="grid-container">
-        <div id="a">
-            <p class="mainsub">SUBJECTS</p>
-            <table id="subj">
-                <tr>
-                    <td class="iconsub"><a href="https://icieie.github.io/csproj/csproj/grades/biogrades.html">
-                        <i class="fas fa-thin fa-dna"></i></a>
-                        <p>BIOLOGY</p></td>
-                    <td class="iconsub"><a href="https://icieie.github.io/csproj/csproj/grades/chemrgades.html">
-                        <i class="fas fa-thin fa-vial"></i></a>
-                        <p>CHEMISTRY</p></td>
-                    <td class="iconsub"><a href="https://icieie.github.io/csproj/comscigrades">
-                        <i class="fas fa-solid fa-desktop"></i></a>
-                        <p>COMPSCI</p></td>
-                </tr>
-                <tr>
-                    <td><a href="https://icieie.github.io/csproj/csproj/grades/englishgrades.html">
-                        <i class="fas fa-solid fa-book-open"></i></a>
-                        <p>ENGLISH</p></td>
-                    <td><a href="https://icieie.github.io/csproj/csproj/grades/filipinogrades.html">
-                        <i class="fas fa-thin fa-book"></i></a>
-                        <p>FILIPINO</p></td>
-                    <td><a href="https://icieie.github.io/csproj/csproj/grades/healthgrades.html">
-                        <i class="fas fa-thin fa-heart"></i></a>
-                        <p>HEALTH</p></td>
-                </tr>
-                <tr>
-                    <td><a href="https://icieie.github.io/csproj/csproj/grades/mathgrades.html">
-                        <i class="fas fa-thin fa-calculator"></i></a>
-                        <p>MATH</p></td>
-                    <td><a href="https://icieie.github.io/csproj/csproj/grades/musicgrades.html">
-                        <i class="fas fa-thin fa-music"></i></a>
-                        <p>MUSIC</p></td>
-                    <td><a href="https://icieie.github.io/csproj/csproj/grades/pegrades.html">
-                        <i class="fas fa-thin fa-dumbbell"></i></a>
-                        <p>PE</p></td>
-                </tr>
-                <tr>
-                    <td><a href="https://icieie.github.io/csproj/csproj/grades/physicsgrades.html">
-                        <i class="fas fa-thin fa-atom"></i></a>
-                        <p>PHYSICS</p></td>
-                    <td><a href="https://icieie.github.io/csproj/csproj/grades/socscigrades.html">
-                        <i class="fas fa-thin fa-landmark"></i></a>
-                        <p>SOCSCI</p></td>
-                    <td><a href="https://icieie.github.io/csproj/csproj/grades/statgrades.html">
-                        <i class="fas fa-thin fa-signal"></i></a>
-                        <p>STATS</p></td>
-                </tr>
-                <tr>
-                    <td> </td>
-                    <td><a href="https://icieie.github.io/csproj/csproj/grades/valedgrades.html">
-                        <i class="fas fa-thin fa-hand-holding-heart"></i></a>
-                        <p>VALED</p></td>
-                    <td> </td>
-                </tr>
-            </table>
-        </div>
+  
+        <div class="main">
+            <div class="fixed-top" id="top">
+                <img id="logo" alt="PSHS logo" class="mx-auto d-block" src="pshs-logo.png">
+            </div>
         
-        <div id="b">
-            <p class="mainsub">GRADES</p>
-            <table class="grades">
+            <div class="container-fluid">
+            <div class="grid-container" id="content">
+                <div id="a">
+                <table id="subjtitle">
+                    <tr>
+                        <td><h1>COMSCI</h1></td>
+                    </tr>
+                    <tr>
+                        <td><i class="fas fa-thin fa-user"></i> Jan Michael R. Ibanez</td>
+                    </tr>
+                    <tr>
+                        <td><i class="fas fa-thin fa-envelope"></i> jmribanez@clc.pshs.edu.ph</td>
+                    </tr>
+                </table>
+                </div>
+                
+                <div id="b">
+                <table id="schedule">
+                    <tr>
+                        <th id="schedtitle">SCHEDULE</th>
+                        <th> </th>
+                        <th> </th>
+                    </tr>
+                    <tr>
+                        <td class="line">Asynchronous</td>
+                        <td class="day">Mondays</td>
+                        <td class="time"> 07:40 - 08:30 AM</td>
+                    </tr>
+                    <tr>
+                        <td class="line">Asynchronous</td>
+                        <td class="day">Tuesdays</td>
+                        <td class="time">08:30 - 09:20 AM</td>
+                    </tr>
+                    <tr>
+                        <td class="line">Synchronous</td>
+                        <td class="day">Thursdays</td>
+                        <td class="time">10:30 - 11:20 AM</td>
+                    </tr>
+                </table>
+                </div>
+                
+                <div id="c">
+                <table id="deadlines">
+                    <tr>
+                        <th id="dltitle">DEADLINES</th>
+                        <th> </th>
+                        <th> </th>
+                        <th> </th>
+                    </tr>
+                    <tr>
+                        <td class="line">Quiz</td>
+                        <td class="day">February 10</td>
+                        <td>||</td>
+                        <td class="time">11:59 PM</td>
+                    </tr>
+                    <tr>
+                        <td class="line">Formative Assessment 2</td>
+                        <td class="day">February 14</td>
+                        <td>||</td>
+                        <td class="time">11:59 PM</td>
+                    </tr>
+                    <tr>
+                        <td class="line">Alternative Assessment</td>
+                        <td class="day">February 21</td>
+                        <td>||</td>
+                        <td class="time">11:59 PM</td>
+                    </tr>
+                </table>
+            </div>
+            </div>
+                
+            <div>
+                <div class="container-fluid" id="announcements4">
+                    <table class="anntitle">
+                        <tr>
+                            <td><h4 class="an">ANNOUNCEMENTS</h4></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+                
+                <table class="announcementstable">
+                    <tr class="aa">
+                        <td>DEADLINE EXTENSION</td>
+                        <td>FA: February 31</td>
+                    </tr>
+                    <tr class="aa">
+                        <td>DEADLINE EXTENSION</td>
+                        <td>AA: February 31</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Completion of Alternative Assessment 1 before February 11 will merit bonus worth 30k points for your upcoming Periodical Exam.</td>
+                    </tr>
+                </table>
+                
+            <div>
+                <div class="container-fluid" id="announcements3">
+                    <table class="anntitle">
+                        <tr>
+                            <td><h4 class="an">WEEK 1</h4></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+                
+            <table class="week1">
                 <tr>
-                    <td colspan="2" class="gradestitle">FORMATIVE - 25%</td>
+                    <td class="lg">Learning Guides</td>
+                    <td class="space"></td>
+                    <td class="assessments">Assessments</td>
                 </tr>
                 <tr>
-                    <td class="label">FA 1</td>
-                    <td class="score">20/20</td>
+                    <td class="lg1">LG 6.1 - Layout Tags</td>
+                    <td class="space"></td>
+                    <td class="assessments1">None</td>
                 </tr>
                 <tr>
-                    <td class="label">FA 2:</td>
-                    <td class="score">16/16</td>
+                    <td class="lg1">LG 6.2 - Multimedia tags</td>
+                    <td class="space"></td>
+                    <td class="assessments1"><a href="https://icieie.github.io/csproj/quiz.html">Quiz</a></td>
                 </tr>
                 <tr>
-                    <td colspan="2" class="gradestitle">ALTERNATIVE - 25%</td>
-                </tr>
-                <tr>
-                    <td class="label">AA 1:</td>
-                    <td class="score">30/30</td>
-                </tr>
-                <tr>
-                    <td class="label">AA 2:</td>
-                    <td class="score">30/30</td>
-                </tr>
-                <tr>
-                    <td colspan="2" class="gradestitle">EXAMS - 50%</td>
-                </tr>
-                <tr>
-                    <td class="label">LE 1:</td>
-                    <td class="score">33/33</td>
-                </tr>
-                <tr>
-                    <td class="label">LE 2:</td>
-                    <td class="score">43/43</td>
-                </tr>
-                <tr>
-                    <td id="raw">RAW GRADE:</td>
-                    <td class="score">100</td>
-                </tr>
-                <tr>
-                    <td id="final">FINAL GRADE: </td>
-                    <th class="score">1.00</th>
+                    <td class="lg1">LG 7.1 - Text Links</td>
+                    <td class="space"></td>
+                    <td class="assessments1">FA #1</td>
                 </tr>
             </table>
-        </div>
-        </div>
-        
-        <div class="grid-container">
-        <div id="c">
-            <p class="mainsub">SUMMARY</p>
-            <table class="summary">
-                <tr class="s">
-                    <td class="s1">SUBJECT</td>
-                    <td class="grade">GRADE</td>
-                    <td class="grade">UNITS</td>
+                
+            <div>
+                <div class="container-fluid" id="announcements2">
+                    <table class="anntitle">
+                        <tr>
+                            <td><h4 class="an">WEEK 2</h4></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+                
+            <table class="week1">
+                <tr>
+                    <td class="lg">Learning Guides</td>
+                    <td class="space"></td>
+                    <td class="assessments">Assessments</td>
                 </tr>
-                <tr class="s">
-                    <td class="s1">Biology</td>
-                    <td class="grade">1.00</td>
-                    <td class="grade">1.00</td>
+                <tr>
+                    <td class="lg1">LG 7.2 - Events in CSS</td>
+                    <td class="space"></td>
+                    <td class="assessments1">None</td>
                 </tr>
-                <tr class="s">
-                    <td class="s1">Chemistry</td>
-                    <td class="grade">1.00</td>
-                    <td class="grade">1.00</td>
+                <tr>
+                    <td class="lg1">LG 7.3 - Image Sprites</td>
+                    <td class="space"></td>
+                    <td class="assessments1">FA #2</td>
                 </tr>
-                <tr class="s">
-                    <td class="s1">Computer Science</td>
-                    <td class="grade">1.00</td>
-                    <td class="grade">1.00</td>
+                <tr>
+                    <td class="lg1">LG 7.4.1 - What's New in CSS 3 (transform)</td>
+                    <td class="space"></td>
+                    <td class="assessments1">None</td>
                 </tr>
-                <tr class="s">
-                    <td class="s1">English</td>
-                    <td class="grade">1.00</td>
-                    <td class="grade">1.00</td>
-                </tr>
-                <tr class="s">
-                    <td class="s1">Filipino</td>
-                    <td class="grade">1.00</td>
-                    <td class="grade">1.00</td>
-                </tr>
-                <tr class="s">
-                    <td class="s1">Health</td>
-                    <td class="grade">1.00</td>
-                    <td class="grade">1.00</td>
-                </tr>
-                <tr class="s">
-                    <td class="s1">Math</td>
-                    <td class="grade">1.00</td>
-                    <td class="grade">1.00</td>
-                </tr>
-                <tr class="s">
-                    <td class="s1">Music</td>
-                    <td class="grade">1.00</td>
-                    <td class="grade">1.00</td>
-                </tr>
-                <tr class="s">
-                    <td class="s1">Physical Education</td>
-                    <td class="grade">1.00</td>
-                    <td class="grade">1.00</td>
-                </tr>
-                <tr class="s">
-                    <td class="s1">Physics</td>
-                    <td class="grade">1.00</td>
-                    <td class="grade">1.00</td>
-                </tr>
-                <tr class="s">
-                    <td class="s1">Social Science</td>
-                    <td class="grade">1.00</td>
-                    <td class="grade">1.00</td>
-                </tr>
-                <tr class="s">
-                    <td class="s1">Statistics</td>
-                    <td class="grade">1.00</td>
-                    <td class="grade">1.00</td>
-                </tr>
-                <tr class="s">
-                    <th class="s1">GWA</th>
-                    <th class="grade">1.00</th>
-                    <td class="grade">12.00</td>
+                <tr>
+                    <td class="lg1">LG 7.4.2 - What's New in CSS 3 (selectors, background, border, transform)</td>
+                    <td class="space"></td>
+                    <td class="assessments1">AA</td>
                 </tr>
             </table>
-        </div> 
-    </div>
-    </div>
-    
-    <div class="main">
+                
+            <div>
+                <div class="container-fluid" id="announcements">
+                    <table class="anntitle">
+                        <tr>
+                            <td><h4 class="an">EXTRA RESOURCES</h4></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+                
+            <table class="week1">
+                <tr>
+                    <td class="lg"><a href="https://drive.google.com/file/d/1oN2um_n2_Q2eB3ecdjoepjkGQ8XICjGf/view">References</a></td>
+                    <td class="space"></td>
+                    <td class="assessments"><a href="https://drive.google.com/drive/folders/1P2dnuBzd8NdMHbeH_RorpN5qGgdEwmqI">Syllabus</a></td>
+                </tr>
+            </table>
+                
+        </div>
+
     <div id="footer" class="container-fluid">
         <h3>
             Stay in touch
@@ -866,24 +853,24 @@
             </li>
     </ul>
     </div>
-    </div>
     
     <script>
-      let arrow = document.querySelectorAll(".arrow");
-      console.log(arrow);
-      for (var i = 0; i< arrow.length; i++) {
-          arrow[i].addEventListener("click", (e)=>{
+        let arrow = document.querySelectorAll(".arrow");
+        console.log(arrow);
+        for (var i = 0; i< arrow.length; i++) {
+            arrow[i].addEventListener("click", (e)=>{
         let arrowParent = e.target.parentElement.parentElement;
         arrowParent.classList.toggle("showMenu");
         });
-      }
+        }
 
-      let sidebar = document.querySelector(".sidebar");
-      let sidebarBtn = document.querySelector(".fa-bars");
-      console.log(sidebarBtn);
-      sidebarBtn.addEventListener("click", ()=>{
+        let sidebar = document.querySelector(".sidebar");
+        let sidebarBtn = document.querySelector(".fa-bars");
+        console.log(sidebarBtn);
+        sidebarBtn.addEventListener("click", ()=>{
         sidebar.classList.toggle("inactive");
-      });
+        });
     </script>
     </div>
+</body>
 </html>
