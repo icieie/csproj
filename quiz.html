@@ -370,6 +370,60 @@
             left: 260px;
             transition: all 0.5s ease;
         }
+            #quizbox-choices {
+              display: flex;
+              flex-direction: column;
+            }
+
+            #quizbox-question {
+              font-family: thicker;
+              margin: 5px;
+              font-size: 1.777rem;
+            }
+
+            .button-choice {
+              padding: 8px;
+              margin: 5px;
+              border-radius: 5px;
+              color: #6d8fed;
+              border: 2px solid #6d8fed;
+              background-color: #edf0fd;
+            }
+
+            .previousnext {
+              border-radius: 5px;
+            }
+
+            #button-previous {
+              background-color: #fff;
+              border: 2px solid #dae5f9;
+              color: #dae5f9;
+            }
+
+            #button-next {
+              border: 2px solid #364fa6;
+              color: #fff;
+              background-color: #364fa6;
+            }
+
+            #quizbox-bottom-flexelements {
+              display:flex;
+              justify-content: space-between;
+            }
+
+            #quizbox {
+              border-radius: 0.5rem;
+              box-shadow: 0px 10px 20px 0px #edf0fd;
+              padding: 20px;
+              margin: 10px;
+              background-color: #fff;
+              max-width: 1200px;
+
+            }
+
+          i {
+            color: #fff;
+          }
 
     </style>
 </head>
@@ -468,7 +522,7 @@
                 <h1>Quiz 1</h1>
                 <div id="quizbox">
                   <div id="quizbox-top">
-                    <p id="quizbox-top-text">Computer Science 3<hr></p>
+                    <p id="quizbox-top-text">Computer Science 3<hr>
                   </div>
                   <div id="quizbox-question">What does HTML stand for?</div>
                   <div id="quizbox-choices">
@@ -485,68 +539,13 @@
                         1 of 5 Questions
                       </div>
                       <div id="quizbox-bottom-flexelements-buttons">
-                        <button class="previousnext" id="button-previous"> < Previous </button>
-                        <button class="previousnext" id="button-next"> Next > </button>
+                        <button class="previousnext" id="button-previous"> Previous </button>
+                        <button class="previousnext" id="button-next"> Next </button>
                       </div>
                     </div>
                   </div>
                 </div>
             </div>
-
-            <style>
-
-            #quizbox-choices {
-              display: flex;
-              flex-direction: column;
-            }
-
-            #quizbox-question {
-              font-family: thicker;
-              margin: 5px;
-              font-size: 1.777rem;
-            }
-
-            .button-choice {
-              padding: 8px;
-              margin: 5px;
-              border-radius: 5px;
-              color: #6d8fed;
-              border: 2px solid #6d8fed;
-              background-color: #edf0fd;
-            }
-
-            .previousnext {
-              border-radius: 5px;
-            }
-
-            #button-previous {
-              background-color: #fff;
-              border: 2px solid #dae5f9;
-              color: #dae5f9;
-            }
-
-            #button-next {
-              border: 2px solid #364fa6;
-              color: #fff;
-              background-color: #364fa6;
-            }
-
-            #quizbox-bottom-flexelements {
-              display:flex;
-              justify-content: space-between;
-            }
-
-            #quizbox {
-              border-radius: 0.5rem;
-              box-shadow: 0px 10px 20px 0px #edf0fd;
-              padding: 20px;
-              margin: 10px;
-              background-color: #fff;
-              max-width: 1200px;
-
-            }
-
-            </style>
 
             <div class="container-fluid" id="footer">
                 <h3>
@@ -568,12 +567,6 @@
                 </ul>
             </div>
         </div>
-
-        <style>
-          i {
-            color: #fff;
-          }
-        </style>
 
     <script>
         let arrow = document.querySelectorAll(".arrow");
